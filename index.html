@@ -3,137 +3,351 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>fadwa · birthday</title>
+    <title>fadwa turns 16 ✦</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- floating sunflowers (minimal) -->
-    <div class="floating-bg">
-        <div class="float"></div>
-        <div class="float"></div>
-        <div class="float"></div>
-        <div class="float"></div>
+    <!-- animated background -->
+    <div class="animated-bg">
+        <div class="gradient-sphere"></div>
+        <div class="gradient-sphere"></div>
+        <div class="gradient-sphere"></div>
     </div>
 
+    <!-- floating particles -->
+    <div class="particles" id="particles"></div>
+
     <main class="app">
-        <!-- scene 1: sunflower + gift -->
+        <!-- scene 1: SUNFLOWER FIELD (realistic + interactive) -->
         <section id="scene-1" class="scene active">
-            <div class="center-content">
-                <div class="sunflower-wrapper">
-                    <div class="sunflower" id="mainSunflower">
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="center"></div>
+            <div class="sunflower-field-container">
+                <!-- animated sunflowers -->
+                <div class="sunflower-field">
+                    <div class="sunflower large" id="sunflower1">
+                        <div class="flower-head">
+                            <div class="petal" style="--rot: 0deg"></div>
+                            <div class="petal" style="--rot: 45deg"></div>
+                            <div class="petal" style="--rot: 90deg"></div>
+                            <div class="petal" style="--rot: 135deg"></div>
+                            <div class="petal" style="--rot: 180deg"></div>
+                            <div class="petal" style="--rot: 225deg"></div>
+                            <div class="petal" style="--rot: 270deg"></div>
+                            <div class="petal" style="--rot: 315deg"></div>
+                            <div class="center">
+                                <div class="center-texture"></div>
+                            </div>
+                        </div>
+                        <div class="stem">
+                            <div class="leaf left"></div>
+                            <div class="leaf right"></div>
+                        </div>
                     </div>
-                    <div class="stem"></div>
+                    
+                    <div class="sunflower medium" id="sunflower2">
+                        <div class="flower-head">
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="center"></div>
+                        </div>
+                        <div class="stem"></div>
+                    </div>
+                    
+                    <div class="sunflower small" id="sunflower3">
+                        <div class="flower-head">
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="center"></div>
+                        </div>
+                        <div class="stem"></div>
+                    </div>
+                    
+                    <!-- more sunflowers in background -->
+                    <div class="sunflower bg bg1"></div>
+                    <div class="sunflower bg bg2"></div>
+                    <div class="sunflower bg bg3"></div>
                 </div>
                 
-                <h1 class="name-title">fadwa</h1>
-                
-                <div class="gift-box" id="giftBox">
-                    <div class="gift-lid"></div>
-                    <div class="gift-base"></div>
-                    <div class="ribbon"></div>
+                <!-- floating name -->
+                <div class="floating-name-wrapper">
+                    <h1 class="floating-name" id="floatingName">fadwa</h1>
+                    <div class="sparkles"></div>
                 </div>
                 
-                <p class="hint">click the gift</p>
+                <!-- magical gift box -->
+                <div class="magical-gift" id="magicalGift">
+                    <div class="gift-glow"></div>
+                    <div class="gift-box-3d">
+                        <div class="gift-lid">
+                            <div class="lid-top"></div>
+                            <div class="lid-ribbon"></div>
+                        </div>
+                        <div class="gift-body">
+                            <div class="gift-ribbon horizontal"></div>
+                            <div class="gift-ribbon vertical"></div>
+                            <div class="gift-shine"></div>
+                        </div>
+                    </div>
+                    <div class="floating-tag">click to open</div>
+                    
+                    <!-- floating particles around gift -->
+                    <div class="gift-particles"></div>
+                </div>
+            </div>
+            
+            <div class="scroll-hint">
+                <span>scroll down</span>
+                <div class="scroll-arrow">↓</div>
             </div>
         </section>
 
-        <!-- scene 2: gift contents -->
+        <!-- scene 2: GIFT CONTENTS (interactive) -->
         <section id="scene-2" class="scene">
-            <div class="center-content">
-                <div class="items-grid">
-                    <div class="item" id="itemSunflower">
-                        <div class="item-icon sunflower-icon"></div>
-                        <span class="item-label">sunflower</span>
+            <div class="gift-unboxing">
+                <h2 class="section-title appear">your gift contains</h2>
+                
+                <div class="gift-items-3d">
+                    <div class="gift-item-3d" id="giftSunflower">
+                        <div class="item-3d sunflower-3d">
+                            <div class="petal-3d"></div>
+                            <div class="petal-3d"></div>
+                            <div class="petal-3d"></div>
+                            <div class="petal-3d"></div>
+                            <div class="petal-3d"></div>
+                            <div class="petal-3d"></div>
+                            <div class="center-3d">🌻</div>
+                        </div>
+                        <span class="item-label">sunflower seed</span>
+                        <div class="hover-effect"></div>
                     </div>
                     
-                    <div class="item" id="itemChocolate">
-                        <div class="item-icon chocolate-icon"></div>
+                    <div class="gift-item-3d" id="giftChocolate">
+                        <div class="item-3d chocolate-3d">
+                            <div class="chocolate-piece"></div>
+                            <div class="chocolate-piece"></div>
+                            <div class="chocolate-piece"></div>
+                        </div>
                         <span class="item-label">chocolate</span>
+                        <div class="hover-effect"></div>
                     </div>
                     
-                    <div class="item" id="itemLetter">
-                        <div class="item-icon letter-icon"></div>
-                        <span class="item-label">letter</span>
+                    <div class="gift-item-3d" id="giftLetter">
+                        <div class="item-3d letter-3d">
+                            <div class="letter-envelope">
+                                <div class="envelope-flap"></div>
+                                <div class="envelope-body"></div>
+                            </div>
+                        </div>
+                        <span class="item-label">secret letter</span>
+                        <div class="hover-effect"></div>
                     </div>
                 </div>
                 
-                <p class="hint">click each item</p>
+                <div class="interaction-hint">hover & click each gift</div>
             </div>
         </section>
 
-        <!-- scene 3: the letter -->
+        <!-- scene 3: THE LETTER (animated) -->
         <section id="scene-3" class="scene">
-            <div class="letter-container">
-                <div class="letter-paper">
-                    <div class="letter-header">
-                        <span class="dot"></span>
-                        <h2>for fadwa</h2>
-                        <span class="dot"></span>
+            <div class="letter-experience">
+                <div class="magical-letter" id="magicalLetter">
+                    <div class="letter-paper">
+                        <div class="letter-decoration">
+                            <div class="floating-sunflower-small"></div>
+                            <div class="floating-sunflower-small"></div>
+                        </div>
+                        
+                        <div class="letter-content">
+                            <p class="letter-line">my dearest fadwa,</p>
+                            <p class="letter-line">sixteen looks beautiful on you.</p>
+                            <p class="letter-line">like the sunflowers you love,</p>
+                            <p class="letter-line">you turn everything into gold.</p>
+                            <p class="letter-line">paris is waiting.</p>
+                            <p class="letter-line">your dreams are waiting.</p>
+                            <p class="letter-line">i'll be right here,</p>
+                            <p class="letter-line">cheering you on.</p>
+                            <p class="letter-line signature">with all my love,</p>
+                            <p class="letter-line signature">your sister</p>
+                        </div>
+                        
+                        <div class="letter-shine"></div>
                     </div>
                     
-                    <div class="letter-body">
-                        <p>my dearest sister,</p>
-                        <p>on your birthday, i wanted to give you something simple — like the sunflowers you love, always finding the light.</p>
-                        <p>you have dreams as big as the sky. paris is waiting. the kitchens of the world are waiting for your touch.</p>
-                        <p>i believe in you. always.</p>
-                        <p class="signature">with love,<br>your sister</p>
-                    </div>
+                    <div class="letter-background"></div>
                 </div>
                 
-                <button class="btn" id="toDreams">see your dreams →</button>
+                <button class="continue-button" id="toDreamsBtn">
+                    <span>see your dreams</span>
+                    <div class="button-sparkle"></div>
+                </button>
             </div>
         </section>
 
-        <!-- scene 4: dreams - eiffel tower -->
+        <!-- scene 4: DREAMS - EIFFEL TOWER (interactive) -->
         <section id="scene-4" class="scene">
-            <div class="dreams-view">
-                <h2 class="dreams-title">your dreams</h2>
+            <div class="dreams-experience">
+                <h2 class="dreams-main-title">your future</h2>
                 
-                <div class="tower-container" id="towerContainer">
-                    <!-- minimalist eiffel tower -->
-                    <div class="tower">
-                        <div class="level base"></div>
-                        <div class="level first"></div>
-                        <div class="level second"></div>
-                        <div class="level third"></div>
-                        <div class="level tip"></div>
+                <div class="eiffel-tower-container" id="eiffelTowerContainer">
+                    <!-- 3D Eiffel Tower -->
+                    <div class="tower-3d">
+                        <div class="tower-base"></div>
+                        <div class="tower-leg left"></div>
+                        <div class="tower-leg right"></div>
+                        <div class="tower-arch"></div>
+                        <div class="tower-first"></div>
+                        <div class="tower-second"></div>
+                        <div class="tower-third"></div>
+                        <div class="tower-top"></div>
+                        <div class="tower-antenna"></div>
+                        
+                        <!-- dream lights (appear on click) -->
+                        <div class="dream-light study" id="lightStudy">
+                            <div class="light-beam"></div>
+                            <div class="dream-message">
+                                <h3>study abroad</h3>
+                                <p>paris · tokyo · london</p>
+                                <div class="dream-emoji">📚✨</div>
+                            </div>
+                        </div>
+                        
+                        <div class="dream-light chef" id="lightChef">
+                            <div class="light-beam"></div>
+                            <div class="dream-message">
+                                <h3>become a chef</h3>
+                                <p>create · taste · inspire</p>
+                                <div class="dream-emoji">👩‍🍳✨</div>
+                            </div>
+                        </div>
+                        
+                        <div class="dream-light travel" id="lightTravel">
+                            <div class="light-beam"></div>
+                            <div class="dream-message">
+                                <h3>travel the world</h3>
+                                <p>explore every flavor</p>
+                                <div class="dream-emoji">✈️🌍</div>
+                            </div>
+                        </div>
                     </div>
                     
-                    <!-- dream cards (appear on click) -->
-                    <div class="dream-card" id="dream1">
-                        <h3>study abroad</h3>
-                        <p>paris · tokyo · new york</p>
-                    </div>
-                    
-                    <div class="dream-card" id="dream2">
-                        <h3>become a chef</h3>
-                        <p>create · taste · inspire</p>
-                    </div>
-                    
-                    <div class="dream-card" id="dream3">
-                        <h3>travel the world</h3>
-                        <p>explore · learn · grow</p>
-                    </div>
+                    <!-- floating dream bubbles -->
+                    <div class="dream-bubble paris">🇫🇷</div>
+                    <div class="dream-bubble cooking">🍳</div>
+                    <div class="dream-bubble world">🌎</div>
                 </div>
                 
-                <p class="hint" id="towerHint">click the tower</p>
-                
-                <!-- final message (appears after all dreams) -->
-                <div class="final-message" id="finalMessage">
-                    <p>happy birthday fadwa</p>
-                    <p>all your dreams are waiting</p>
+                <div class="dream-counter" id="dreamCounter">
+                    <span class="counter-text">0/3 dreams discovered</span>
+                    <div class="counter-progress">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
                 </div>
             </div>
+        </section>
+
+        <!-- scene 5: BIRTHDAY CAKE (finale) -->
+        <section id="scene-5" class="scene">
+            <div class="birthday-finale">
+                <div class="cake-stage">
+                    <!-- candles floating animation -->
+                    <div class="floating-candles">
+                        <div class="candle" id="candle1">
+                            <div class="flame" id="flame1"></div>
+                            <div class="candle-body"></div>
+                        </div>
+                        <div class="candle" id="candle2">
+                            <div class="flame" id="flame2"></div>
+                            <div class="candle-body"></div>
+                        </div>
+                        <div class="candle" id="candle3">
+                            <div class="flame" id="flame3"></div>
+                            <div class="candle-body"></div>
+                        </div>
+                        <div class="candle" id="candle4">
+                            <div class="flame" id="flame4"></div>
+                            <div class="candle-body"></div>
+                        </div>
+                        <div class="candle" id="candle5">
+                            <div class="flame" id="flame5"></div>
+                            <div class="candle-body"></div>
+                        </div>
+                        <div class="candle" id="candle6">
+                            <div class="flame" id="flame6"></div>
+                            <div class="candle-body"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 3D cake -->
+                    <div class="cake-3d">
+                        <div class="cake-layer layer1">
+                            <div class="icing"></div>
+                        </div>
+                        <div class="cake-layer layer2">
+                            <div class="icing"></div>
+                        </div>
+                        <div class="cake-layer layer3">
+                            <div class="icing"></div>
+                        </div>
+                        
+                        <!-- decorations -->
+                        <div class="sprinkles"></div>
+                        <div class="heart-decoration">16</div>
+                    </div>
+                    
+                    <!-- blow instruction -->
+                    <div class="blow-instruction" id="blowInstruction">
+                        <span>blow the candles</span>
+                        <div class="microphone-icon">🎤</div>
+                    </div>
+                    
+                    <!-- blow detection visualizer -->
+                    <div class="blow-visualizer" id="blowVisualizer">
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                    </div>
+                </div>
+                
+                <!-- final birthday message (appears after blowing) -->
+                <div class="final-message-container" id="finalMessage">
+                    <h1 class="final-happy">happy 16th birthday</h1>
+                    <h2 class="final-name">fadwa</h2>
+                    
+                    <!-- animated number 16 -->
+                    <div class="number-16">
+                        <span class="digit">1</span>
+                        <span class="digit">6</span>
+                    </div>
+                    
+                    <!-- floating hearts and sunflowers -->
+                    <div class="floating-hearts">
+                        <span>💛</span>
+                        <span>🌻</span>
+                        <span>💛</span>
+                        <span>🌻</span>
+                    </div>
+                    
+                    <p class="final-wish">all your dreams are coming true</p>
+                    
+                    <!-- replay button -->
+                    <button class="replay-btn" id="replayBtn">celebrate again ✦</button>
+                </div>
+            </div>
+            
+            <!-- confetti cannon -->
+            <canvas id="confettiCanvas"></canvas>
         </section>
     </main>
 
