@@ -3,199 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>happy 16th birthday fadwa</title>
+    <title>fadwa · 16</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- soft gradient background -->
-    <div class="bg-gradient"></div>
+    <!-- soft background -->
+    <div class="bg-soft"></div>
 
-    <main class="experience">
-        <!-- SCENE 1: SUNFLOWER BOUQUET -->
+    <main class="container">
+        <!-- SCENE 1: SUNFLOWER + GIFT -->
         <section id="scene1" class="scene active">
-            <div class="content-center">
-                <!-- elegant title -->
-                <h1 class="gentle-title">for fadwa</h1>
-                
-                <!-- sunflower bouquet -->
-                <div class="bouquet" id="bouquet">
-                    <div class="sunflower large">
-                        <div class="flower">
-                            <div class="petal" style="--rot: 0deg"></div>
-                            <div class="petal" style="--rot: 45deg"></div>
-                            <div class="petal" style="--rot: 90deg"></div>
-                            <div class="petal" style="--rot: 135deg"></div>
-                            <div class="petal" style="--rot: 180deg"></div>
-                            <div class="petal" style="--rot: 225deg"></div>
-                            <div class="petal" style="--rot: 270deg"></div>
-                            <div class="petal" style="--rot: 315deg"></div>
-                            <div class="center"></div>
-                        </div>
-                        <div class="stem"></div>
+            <div class="center">
+                <!-- simple sunflower -->
+                <div class="sunflower-simple">
+                    <div class="flower">
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                        <div class="center-circle"></div>
                     </div>
-                    
-                    <div class="sunflower medium">
-                        <div class="flower">
-                            <div class="petal"></div>
-                            <div class="petal"></div>
-                            <div class="petal"></div>
-                            <div class="petal"></div>
-                            <div class="petal"></div>
-                            <div class="petal"></div>
-                            <div class="petal"></div>
-                            <div class="petal"></div>
-                            <div class="center small"></div>
-                        </div>
-                        <div class="stem"></div>
-                    </div>
-                    
-                    <div class="sunflower small">
-                        <div class="flower">
-                            <div class="petal tiny"></div>
-                            <div class="petal tiny"></div>
-                            <div class="petal tiny"></div>
-                            <div class="petal tiny"></div>
-                            <div class="petal tiny"></div>
-                            <div class="petal tiny"></div>
-                            <div class="center tiny"></div>
-                        </div>
-                        <div class="stem light"></div>
-                    </div>
-                    
-                    <!-- greenery -->
-                    <div class="leaf left"></div>
-                    <div class="leaf right"></div>
+                    <div class="stem"></div>
                 </div>
                 
-                <!-- name and age -->
-                <div class="name-age">
-                    <span class="name">fadwa</span>
-                    <span class="age">16</span>
+                <!-- name + age -->
+                <h1 class="name-large">fadwa</h1>
+                <div class="age-circle">16</div>
+                
+                <!-- gift box (simple) -->
+                <div class="gift-simple" id="giftBox">
+                    <div class="gift-top"></div>
+                    <div class="gift-bottom"></div>
+                    <div class="gift-ribbon"></div>
                 </div>
                 
-                <!-- gift box -->
-                <div class="gift" id="giftBox">
-                    <div class="gift-lid"></div>
-                    <div class="gift-base"></div>
-                    <div class="ribbon"></div>
-                </div>
-                
-                <p class="light-text">open your gift</p>
+                <p class="hint">tap the gift</p>
             </div>
         </section>
 
-        <!-- SCENE 2: GIFT CONTENTS -->
+        <!-- SCENE 2: THREE SURPRISES -->
         <section id="scene2" class="scene">
-            <div class="content-center">
-                <h2 class="section-title">inside your gift</h2>
+            <div class="center">
+                <p class="small-title">for you</p>
                 
-                <div class="gift-items">
-                    <!-- more flowers -->
-                    <div class="gift-item" id="flowerItem">
-                        <div class="item-circle">
-                            <div class="mini-flower"></div>
-                        </div>
-                        <span>more flowers</span>
+                <div class="surprises">
+                    <!-- flower -->
+                    <div class="surprise" id="flowerBtn">
+                        <div class="icon">🌻</div>
+                        <span>flower</span>
                     </div>
                     
                     <!-- chocolate -->
-                    <div class="gift-item" id="chocolateItem">
-                        <div class="item-circle">
-                            <div class="mini-chocolate"></div>
-                        </div>
+                    <div class="surprise" id="chocolateBtn">
+                        <div class="icon">🍫</div>
                         <span>chocolate</span>
                     </div>
                     
                     <!-- letter -->
-                    <div class="gift-item" id="letterItem">
-                        <div class="item-circle">
-                            <div class="mini-letter"></div>
-                        </div>
+                    <div class="surprise" id="letterBtn">
+                        <div class="icon">✉️</div>
                         <span>letter</span>
                     </div>
                 </div>
                 
-                <p class="light-text small">tap each one</p>
+                <p class="hint small">tap each one</p>
             </div>
         </section>
 
-        <!-- SCENE 3: THE LETTER -->
+        <!-- SCENE 3: LETTER -->
         <section id="scene3" class="scene">
-            <div class="letter-card">
-                <div class="letter-content">
-                    <p class="line">my dearest fadwa,</p>
-                    <p class="line">on your 16th birthday,</p>
-                    <p class="line">i wanted to give you something special.</p>
-                    <p class="line">sunflowers because you light up every room,</p>
-                    <p class="line">chocolate because you're so sweet,</p>
-                    <p class="line">and this letter to tell you:</p>
-                    <p class="line">i believe in your dreams.</p>
-                    <p class="line">study abroad, become a chef,</p>
-                    <p class="line">travel the world —</p>
-                    <p class="line">you can do it all.</p>
-                    <p class="line signature">with love, your sister</p>
-                </div>
+            <div class="letter-box">
+                <p class="letter-line">my dearest fadwa,</p>
+                <p class="letter-line">happy 16th birthday.</p>
+                <p class="letter-line">you're like a sunflower —</p>
+                <p class="letter-line">bright, warm, and beautiful.</p>
+                <p class="letter-line">i believe in your dreams.</p>
+                <p class="letter-line">study abroad, become a chef,</p>
+                <p class="letter-line">travel the world.</p>
+                <p class="letter-line">you can do anything.</p>
+                <p class="letter-line signature">love, your sister</p>
                 
-                <button class="continue-btn" id="toCakeBtn">continue →</button>
+                <button class="next-btn" id="toCake">→</button>
             </div>
         </section>
 
-        <!-- SCENE 4: BIRTHDAY CAKE -->
+        <!-- SCENE 4: CAKE + CANDLES -->
         <section id="scene4" class="scene">
-            <div class="content-center">
-                <h2 class="section-title">time to celebrate</h2>
-                
-                <div class="cake-container">
-                    <!-- candles row -->
-                    <div class="candles">
-                        <div class="candle" id="candle1">
-                            <div class="flame"></div>
-                            <div class="wax"></div>
-                        </div>
-                        <div class="candle" id="candle2">
-                            <div class="flame"></div>
-                            <div class="wax"></div>
-                        </div>
-                        <div class="candle" id="candle3">
-                            <div class="flame"></div>
-                            <div class="wax"></div>
-                        </div>
-                        <div class="candle" id="candle4">
-                            <div class="flame"></div>
-                            <div class="wax"></div>
-                        </div>
-                        <div class="candle" id="candle5">
-                            <div class="flame"></div>
-                            <div class="wax"></div>
-                        </div>
-                        <div class="candle" id="candle6">
-                            <div class="flame"></div>
-                            <div class="wax"></div>
-                        </div>
+            <div class="center">
+                <!-- candles row -->
+                <div class="candles-row">
+                    <div class="candle" id="c1">
+                        <div class="flame"></div>
+                        <div class="stick"></div>
                     </div>
-                    
-                    <!-- simple cake -->
-                    <div class="cake">
-                        <div class="cake-tier"></div>
-                        <div class="cake-tier middle"></div>
-                        <div class="cake-tier top"></div>
-                        <div class="cake-number">16</div>
+                    <div class="candle" id="c2">
+                        <div class="flame"></div>
+                        <div class="stick"></div>
+                    </div>
+                    <div class="candle" id="c3">
+                        <div class="flame"></div>
+                        <div class="stick"></div>
+                    </div>
+                    <div class="candle" id="c4">
+                        <div class="flame"></div>
+                        <div class="stick"></div>
+                    </div>
+                    <div class="candle" id="c5">
+                        <div class="flame"></div>
+                        <div class="stick"></div>
+                    </div>
+                    <div class="candle" id="c6">
+                        <div class="flame"></div>
+                        <div class="stick"></div>
                     </div>
                 </div>
                 
-                <p class="light-text" id="cakeInstruction">tap each candle</p>
+                <!-- simple cake -->
+                <div class="cake-simple"></div>
                 
-                <!-- birthday message (appears after all candles) -->
-                <div class="birthday-message" id="birthdayMessage">
-                    <h1>happy birthday</h1>
-                    <h2>fadwa</h2>
+                <!-- progress + message -->
+                <div class="progress" id="progressText">tap candles: 0/6</div>
+                
+                <!-- birthday message (hidden until all candles) -->
+                <div class="birthday-message" id="birthdayMsg">
+                    <h2>happy birthday</h2>
+                    <h1>fadwa</h1>
                     <div class="sunflower-emoji">🌻</div>
                 </div>
             </div>
-            
-            <!-- simple confetti canvas -->
-            <canvas id="confetti"></canvas>
         </section>
     </main>
 
