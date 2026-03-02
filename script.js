@@ -1,243 +1,330 @@
-// scene management
+// ===== SCENE MANAGEMENT =====
 const scenes = {
     scene1: document.getElementById('scene-1'),
     scene2: document.getElementById('scene-2'),
     scene3: document.getElementById('scene-3'),
-    scene4: document.getElementById('scene-4')
+    scene4: document.getElementById('scene-4'),
+    scene5: document.getElementById('scene-5')
 };
 
-// elements
-const giftBox = document.getElementById('giftBox');
-const itemSunflower = document.getElementById('itemSunflower');
-const itemChocolate = document.getElementById('itemChocolate');
-const itemLetter = document.getElementById('itemLetter');
-const toDreams = document.getElementById('toDreams');
-const tower = document.getElementById('towerContainer');
-const finalMessage = document.getElementById('finalMessage');
-const towerHint = document.getElementById('towerHint');
+// ===== ELEMENTS =====
+const magicalGift = document.getElementById('magicalGift');
+const giftItems = document.querySelectorAll('.gift-item-3d');
+const toDreamsBtn = document.getElementById('toDreamsBtn');
+const eiffelTower = document.getElementById('eiffelTowerContainer');
+const replayBtn = document.getElementById('replayBtn');
 
-// dream cards
-const dream1 = document.getElementById('dream1');
-const dream2 = document.getElementById('dream2');
-const dream3 = document.getElementById('dream3');
-const dreams = [dream1, dream2, dream3];
-
-let currentDreamIndex = -1;
+// ===== STATE =====
+let currentDreamIndex = 0;
+const dreamLights = ['lightStudy', 'lightChef', 'lightTravel'];
 let allDreamsSeen = false;
+let blownCandles = 0;
+const totalCandles = 6;
 
-// switch scene with fade
+// ===== PARTICLES SYSTEM =====
+function createParticles() {
+    const particlesContainer = document.getElementById('particles');
+    const particleCount = 50;
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animation = `floatParticle ${15 + Math.random() * 10}s infinite`;
+        particle.style.animationDelay = Math.random() * 5 + 's';
+        particlesContainer.appendChild(particle);
+    }
+}
+
+function floatParticle() {
+    const particles = document.querySelectorAll('.particle');
+    particles.forEach(particle => {
+        setInterval(() => {
+            const x = (Math.random() - 0.5) * 100;
+            const y = (Math.random() - 0.5) * 100;
+            particle.style.transform = `translate(${x}px, ${y}px)`;
+        }, 3000);
+    });
+}
+
+// ===== SCENE TRANSITIONS =====
 function showScene(sceneId) {
     Object.values(scenes).forEach(scene => {
         scene.classList.remove('active');
     });
     scenes[sceneId].classList.add('active');
+    
+    // trigger entrance animations
+    if (sceneId === 'scene5') {
+        startConfetti();
+    } else {
+        stopConfetti();
+    }
 }
 
-// gift box interaction
-giftBox.addEventListener('click', () => {
+// ===== GIFT INTERACTIONS =====
+magicalGift.addEventListener('click', () => {
+    // open animation
+    const giftBox = document.querySelector('.gift-box-3d');
     giftBox.classList.add('opened');
     
-    // haptic feedback (visual)
-    giftBox.style.transform = 'scale(0.95)';
-    setTimeout(() => {
-        giftBox.style.transform = '';
-    }, 200);
+    // particle explosion
+    for (let i = 0; i < 20; i++) {
+        createGiftParticle();
+    }
     
     // go to gift contents
     setTimeout(() => {
         showScene('scene2');
-    }, 400);
+    }, 800);
 });
 
-// item interactions
-itemSunflower.addEventListener('click', () => {
-    // visual feedback
-    itemSunflower.classList.add('clicked');
-    setTimeout(() => {
-        itemSunflower.classList.remove('clicked');
-    }, 300);
+function createGiftParticle() {
+    const particle = document.createElement('div');
+    particle.className = 'gift-particle';
+    particle.style.cssText = `
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        background: #e6b450;
+        border-radius: 50%;
+        left: 50%;
+        top: 50%;
+        pointer-events: none;
+        z-index: 100;
+        animation: particleFly 1s forwards;
+    `;
     
-    // go back to scene 1 to see sunflower
-    setTimeout(() => {
-        showScene('scene1');
-    }, 400);
-});
-
-itemChocolate.addEventListener('click', () => {
-    itemChocolate.classList.add('clicked');
-    setTimeout(() => {
-        itemChocolate.classList.remove('clicked');
-    }, 300);
+    document.body.appendChild(particle);
     
-    // just a moment of joy
-    alert('🍫 for you!');
-});
-
-itemLetter.addEventListener('click', () => {
-    itemLetter.classList.add('clicked');
-    setTimeout(() => {
-        itemLetter.classList.remove('clicked');
-    }, 300);
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 100 + Math.random() * 100;
+    const x = Math.cos(angle) * distance;
+    const y = Math.sin(angle) * distance;
     
-    // go to letter
+    particle.style.transform = `translate(${x}px, ${y}px)`;
+    particle.style.opacity = '0';
+    
+    setTimeout(() => particle.remove(), 1000);
+}
+
+// add keyframe for particle
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes particleFly {
+        0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        100% { transform: translate(-50%, -50%) translate(var(--x), var(--y)) scale(0); opacity: 0; }
+    }
+    
+    @keyframes floatParticle {
+        0%, 100% { transform: translate(0, 0); }
+        25% { transform: translate(50px, -30px); }
+        50% { transform: translate(100px, 0); }
+        75% { transform: translate(50px, 30px); }
+    }
+`;
+document.head.appendChild(style);
+
+// ===== GIFT ITEMS INTERACTIONS =====
+giftItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+        const id = item.id;
+        
+        // haptic feedback
+        item.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+            item.style.transform = '';
+        }, 200);
+        
+        // create sparkles
+        for (let i = 0; i < 10; i++) {
+            createSparkle(item);
+        }
+        
+        // handle each gift
+        if (id === 'giftSunflower') {
+            // go back to sunflower field
+            setTimeout(() => {
+                showScene('scene1');
+            }, 500);
+        } else if (id === 'giftChocolate') {
+            // chocolate animation
+            alert('🍫 sweet like you!');
+        } else if (id === 'giftLetter') {
+            // go to letter
+            setTimeout(() => {
+                showScene('scene3');
+            }, 500);
+        }
+    });
+});
+
+function createSparkle(element) {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    sparkle.style.cssText = `
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #e6b450;
+        border-radius: 50%;
+        left: ${Math.random() * 100}%;
+        top: ${Math.random() * 100}%;
+        pointer-events: none;
+        animation: sparkleFly 0.8s forwards;
+    `;
+    
+    element.style.position = 'relative';
+    element.appendChild(sparkle);
+    
+    setTimeout(() => sparkle.remove(), 800);
+}
+
+// add sparkle animation
+const sparkleStyle = document.createElement('style');
+sparkleStyle.textContent = `
+    @keyframes sparkleFly {
+        0% { transform: scale(1); opacity: 1; }
+        100% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) scale(0); opacity: 0; }
+    }
+`;
+document.head.appendChild(sparkleStyle);
+
+// ===== LETTER INTERACTIONS =====
+toDreamsBtn.addEventListener('click', () => {
+    // button animation
+    toDreamsBtn.style.transform = 'scale(0.95)';
     setTimeout(() => {
-        showScene('scene3');
-    }, 400);
+        toDreamsBtn.style.transform = '';
+    }, 200);
+    
+    // go to dreams
+    setTimeout(() => {
+        showScene('scene4');
+    }, 300);
 });
 
-// go to dreams
-toDreams.addEventListener('click', () => {
-    showScene('scene4');
-});
-
-// tower interaction - show dreams one by one
-tower.addEventListener('click', (e) => {
+// ===== EIFFEL TOWER DREAMS =====
+eiffelTower.addEventListener('click', (e) => {
     e.stopPropagation();
     
     // tower tap animation
-    tower.style.transform = 'scale(0.98)';
+    eiffelTower.style.transform = 'scale(0.98)';
     setTimeout(() => {
-        tower.style.transform = '';
+        eiffelTower.style.transform = '';
     }, 200);
     
     if (!allDreamsSeen) {
-        currentDreamIndex = (currentDreamIndex + 1) % 3;
-        
         // hide all dreams
-        dreams.forEach(d => d.classList.remove('active'));
+        dreamLights.forEach(id => {
+            const light = document.getElementById(id);
+            if (light) light.classList.remove('active');
+        });
         
         // show current dream
-        dreams[currentDreamIndex].classList.add('active');
-        
-        // update hint
-        if (currentDreamIndex === 2) {
-            towerHint.textContent = 'one more time';
-        } else {
-            towerHint.textContent = 'keep going';
-        }
-        
-        // if we've shown all dreams
-        if (currentDreamIndex === 2) {
-            allDreamsSeen = true;
+        const currentLight = document.getElementById(dreamLights[currentDreamIndex]);
+        if (currentLight) {
+            currentLight.classList.add('active');
             
-            // show final message after a moment
-            setTimeout(() => {
-                finalMessage.classList.add('show');
-                towerHint.textContent = 'happy birthday fadwa ✦';
-            }, 800);
-        }
-    } else {
-        // after all dreams seen, clicking shows message again
-        finalMessage.classList.add('show');
-        towerHint.textContent = 'happy birthday fadwa ✦';
-    }
-});
-
-// reset everything (optional, for replay)
-function resetExperience() {
-    currentDreamIndex = -1;
-    allDreamsSeen = false;
-    dreams.forEach(d => d.classList.remove('active'));
-    finalMessage.classList.remove('show');
-    giftBox.classList.remove('opened');
-    towerHint.textContent = 'click the tower';
-    showScene('scene1');
-}
-
-// keyboard shortcut to reset (press 'r')
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'r' || e.key === 'R') {
-        resetExperience();
-    }
-});
-
-// smooth entrance animations
-document.querySelectorAll('.scene').forEach(scene => {
-    scene.addEventListener('transitionend', () => {
-        // trigger any entrance animations
-        const items = scene.querySelectorAll('.item');
-        items.forEach((item, i) => {
-            item.style.animation = `fadeSlideUp 0.5s ${i * 0.1}s both`;
-        });
-    });
-});
-
-// add floating animation to gift box
-let floatAngle = 0;
-setInterval(() => {
-    if (scenes.scene1.classList.contains('active')) {
-        floatAngle += 0.02;
-        const yOffset = Math.sin(floatAngle) * 5;
-        giftBox.style.transform = `translateY(${yOffset}px)`;
-    }
-}, 50);
-
-// add some gen z micro-interactions
-document.querySelectorAll('.item, .btn, .gift-box').forEach(el => {
-    el.addEventListener('mousedown', () => {
-        el.style.transform = 'scale(0.98)';
-    });
-    
-    el.addEventListener('mouseup', () => {
-        el.style.transform = '';
-    });
-    
-    el.addEventListener('mouseleave', () => {
-        el.style.transform = '';
-    });
-});
-
-// auto-hide hints after a while
-setTimeout(() => {
-    document.querySelectorAll('.hint').forEach(hint => {
-        hint.style.transition = 'opacity 0.5s';
-        hint.style.opacity = '0.5';
-    });
-}, 3000);
-
-// celebrate with confetti on final message
-const finalMessageObserver = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-        if (mutation.target.classList.contains('show')) {
-            // create minimal confetti effect
-            for (let i = 0; i < 10; i++) {
-                createConfetti();
+            // create sparkles around dream
+            for (let i = 0; i < 15; i++) {
+                createDreamSparkle(currentLight);
             }
         }
+        
+        // update counter
+        const counterText = document.querySelector('.counter-text');
+        const progressFill = document.getElementById('progressFill');
+        
+        counterText.textContent = `${currentDreamIndex + 1}/3 dreams discovered`;
+        progressFill.style.width = `${((currentDreamIndex + 1) / 3) * 100}%`;
+        
+        // move to next dream
+        currentDreamIndex++;
+        
+        if (currentDreamIndex >= 3) {
+            allDreamsSeen = true;
+            
+            // show all dreams for a moment
+            setTimeout(() => {
+                dreamLights.forEach(id => {
+                    const light = document.getElementById(id);
+                    if (light) light.classList.add('active');
+                });
+                
+                // go to cake scene after a moment
+                setTimeout(() => {
+                    showScene('scene5');
+                }, 2000);
+            }, 500);
+        }
+    }
+});
+
+function createDreamSparkle(element) {
+    const sparkle = document.createElement('div');
+    sparkle.style.cssText = `
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: #e6b450;
+        border-radius: 50%;
+        left: ${Math.random() * 100}%;
+        top: ${Math.random() * 100}%;
+        pointer-events: none;
+        box-shadow: 0 0 20px #e6b450;
+        animation: dreamSparkle 1s forwards;
+    `;
+    
+    element.style.position = 'relative';
+    element.appendChild(sparkle);
+    
+    setTimeout(() => sparkle.remove(), 1000);
+}
+
+// add dream sparkle animation
+const dreamSparkleStyle = document.createElement('style');
+dreamSparkleStyle.textContent = `
+    @keyframes dreamSparkle {
+        0% { transform: scale(1); opacity: 1; }
+        100% { transform: scale(2) translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px); opacity: 0; }
+    }
+`;
+document.head.appendChild(dreamSparkleStyle);
+
+// ===== CANDLE BLOWING =====
+const candles = document.querySelectorAll('.candle');
+const blowVisualizer = document.getElementById('blowVisualizer');
+const blowInstruction = document.getElementById('blowInstruction');
+const finalMessage = document.getElementById('finalMessage');
+
+let blowIntensity = 0;
+let blowInterval;
+
+candles.forEach((candle, index) => {
+    candle.addEventListener('click', () => {
+        blowCandle(index);
     });
 });
 
-finalMessageObserver.observe(finalMessage, {
-    attributes: true,
-    attributeFilter: ['class']
-});
-
-function createConfetti() {
-    const colors = ['#e6b450', '#8b5a2b', '#d4a5a5', '#f39c12'];
-    const confetti = document.createElement('div');
+// simulate blow detection with microphone-like visualizer
+blowVisualizer.addEventListener('click', () => {
+    // simulate blow
+    blowIntensity = Math.min(1, blowIntensity + 0.3);
     
-    confetti.style.position = 'fixed';
-    confetti.style.left = Math.random() * 100 + '%';
-    confetti.style.top = '-10px';
-    confetti.style.width = '4px';
-    confetti.style.height = '4px';
-    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-    confetti.style.borderRadius = '50%';
-    confetti.style.pointerEvents = 'none';
-    confetti.style.zIndex = '1000';
-    confetti.style.transition = 'all 2s cubic-bezier(0.4, 0, 0.2, 1)';
+    // animate waves
+    const waves = document.querySelectorAll('.wave');
+    waves.forEach(wave => {
+        wave.style.transform = `scaleY(${1 + blowIntensity})`;
+        wave.style.opacity = '0.5';
+        setTimeout(() => {
+            wave.style.transform = '';
+            wave.style.opacity = '';
+        }, 300);
+    });
     
-    document.body.appendChild(confetti);
-    
-    setTimeout(() => {
-        confetti.style.transform = `translateY(${window.innerHeight + 10}px) translateX(${Math.random() * 100 - 50}px)`;
-        confetti.style.opacity = '0';
-    }, 10);
-    
-    setTimeout(() => {
-        confetti.remove();
-    }, 2000);
-}
-
-// start with scene 1
-showScene('scene1');
+    // blow out random candle
+    if (blownCandles < totalCandles) {
+        const randomCandle = Math.floor(Math.random() * totalCandles);
+        blowC
