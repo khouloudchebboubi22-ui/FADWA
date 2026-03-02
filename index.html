@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fadwa · Birthday</title>
+    <title>fadwa · birthday</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Minimal floating elements -->
-    <div class="ambient">
-        <div class="ambient-sunflower"></div>
-        <div class="ambient-sunflower"></div>
-        <div class="ambient-sunflower"></div>
+    <!-- floating sunflowers (minimal) -->
+    <div class="floating-bg">
+        <div class="float"></div>
+        <div class="float"></div>
+        <div class="float"></div>
+        <div class="float"></div>
     </div>
 
-    <!-- Main container -->
-    <main class="container">
-        <!-- Scene 1: Sunflower Field & Gift -->
-        <section id="scene-gift" class="scene active">
-            <div class="sunflower-field">
-                <div class="sunflower main">
-                    <div class="flower">
+    <main class="app">
+        <!-- scene 1: sunflower + gift -->
+        <section id="scene-1" class="scene active">
+            <div class="center-content">
+                <div class="sunflower-wrapper">
+                    <div class="sunflower" id="mainSunflower">
                         <div class="petal"></div>
                         <div class="petal"></div>
                         <div class="petal"></div>
@@ -34,105 +34,104 @@
                     </div>
                     <div class="stem"></div>
                 </div>
-                <p class="name">fadwa</p>
-            </div>
-
-            <!-- Minimal Gift Box -->
-            <div class="gift-container">
+                
+                <h1 class="name-title">fadwa</h1>
+                
                 <div class="gift-box" id="giftBox">
                     <div class="gift-lid"></div>
-                    <div class="gift-body"></div>
-                    <div class="gift-ribbon horizontal"></div>
-                    <div class="gift-ribbon vertical"></div>
+                    <div class="gift-base"></div>
+                    <div class="ribbon"></div>
                 </div>
-                <p class="gift-prompt">open your gift</p>
+                
+                <p class="hint">click the gift</p>
             </div>
         </section>
 
-        <!-- Scene 2: Gift Contents -->
-        <section id="scene-gift-content" class="scene">
-            <div class="gift-content">
-                <div class="gift-items">
-                    <div class="gift-item sunflower-gift">
-                        <div class="mini-sunflower"></div>
-                        <span>sunflower</span>
+        <!-- scene 2: gift contents -->
+        <section id="scene-2" class="scene">
+            <div class="center-content">
+                <div class="items-grid">
+                    <div class="item" id="itemSunflower">
+                        <div class="item-icon sunflower-icon"></div>
+                        <span class="item-label">sunflower</span>
                     </div>
-                    <div class="gift-item chocolate">
-                        <div class="chocolate-piece"></div>
-                        <span>chocolate</span>
+                    
+                    <div class="item" id="itemChocolate">
+                        <div class="item-icon chocolate-icon"></div>
+                        <span class="item-label">chocolate</span>
                     </div>
-                    <div class="gift-item letter" id="openLetter">
-                        <div class="letter-icon"></div>
-                        <span>letter</span>
+                    
+                    <div class="item" id="itemLetter">
+                        <div class="item-icon letter-icon"></div>
+                        <span class="item-label">letter</span>
                     </div>
                 </div>
+                
+                <p class="hint">click each item</p>
             </div>
         </section>
 
-        <!-- Scene 3: The Letter -->
-        <section id="scene-letter" class="scene">
+        <!-- scene 3: the letter -->
+        <section id="scene-3" class="scene">
             <div class="letter-container">
                 <div class="letter-paper">
                     <div class="letter-header">
-                        <span class="sunflower-mark">🌻</span>
+                        <span class="dot"></span>
                         <h2>for fadwa</h2>
-                        <span class="sunflower-mark">🌻</span>
+                        <span class="dot"></span>
                     </div>
+                    
                     <div class="letter-body">
                         <p>my dearest sister,</p>
-                        <p>on your birthday, i wanted to give you something simple — like the sunflowers you love, always turning towards the light.</p>
-                        <p>you have dreams as big as the sky, and i know you'll reach them all. paris is waiting for you. the kitchens of the world are waiting for your touch.</p>
-                        <p>this little gift is just a reminder: i believe in you. always.</p>
+                        <p>on your birthday, i wanted to give you something simple — like the sunflowers you love, always finding the light.</p>
+                        <p>you have dreams as big as the sky. paris is waiting. the kitchens of the world are waiting for your touch.</p>
+                        <p>i believe in you. always.</p>
                         <p class="signature">with love,<br>your sister</p>
                     </div>
                 </div>
-                <button class="continue-btn" id="toDreams">see your dreams →</button>
+                
+                <button class="btn" id="toDreams">see your dreams →</button>
             </div>
         </section>
 
-        <!-- Scene 4: Dreams - Eiffel Tower -->
-        <section id="scene-dreams" class="scene">
-            <div class="dreams-container">
+        <!-- scene 4: dreams - eiffel tower -->
+        <section id="scene-4" class="scene">
+            <div class="dreams-view">
                 <h2 class="dreams-title">your dreams</h2>
                 
-                <div class="eiffel-tower" id="eiffelTower">
-                    <div class="tower-base"></div>
-                    <div class="tower-leg left"></div>
-                    <div class="tower-leg right"></div>
-                    <div class="tower-first"></div>
-                    <div class="tower-second"></div>
-                    <div class="tower-top"></div>
-                    <div class="tower-antenna"></div>
-                    
-                    <!-- Dream Lights (hidden by default) -->
-                    <div class="dream-light study" id="dreamStudy">
-                        <div class="light-content">
-                            <h3>study abroad</h3>
-                            <p>paris, tokyo, new york — the world will be your classroom</p>
-                        </div>
+                <div class="tower-container" id="towerContainer">
+                    <!-- minimalist eiffel tower -->
+                    <div class="tower">
+                        <div class="level base"></div>
+                        <div class="level first"></div>
+                        <div class="level second"></div>
+                        <div class="level third"></div>
+                        <div class="level tip"></div>
                     </div>
                     
-                    <div class="dream-light chef" id="dreamChef">
-                        <div class="light-content">
-                            <h3>become a chef</h3>
-                            <p>creating beauty through food, one dish at a time</p>
-                        </div>
+                    <!-- dream cards (appear on click) -->
+                    <div class="dream-card" id="dream1">
+                        <h3>study abroad</h3>
+                        <p>paris · tokyo · new york</p>
                     </div>
                     
-                    <div class="dream-light travel" id="dreamTravel">
-                        <div class="light-content">
-                            <h3>travel the world</h3>
-                            <p>tasting, learning, growing — everywhere you go</p>
-                        </div>
+                    <div class="dream-card" id="dream2">
+                        <h3>become a chef</h3>
+                        <p>create · taste · inspire</p>
+                    </div>
+                    
+                    <div class="dream-card" id="dream3">
+                        <h3>travel the world</h3>
+                        <p>explore · learn · grow</p>
                     </div>
                 </div>
                 
-                <p class="dream-instruction">click on the tower to see your dreams light up</p>
+                <p class="hint" id="towerHint">click the tower</p>
                 
-                <!-- Final Birthday Message -->
-                <div class="birthday-message" id="birthdayMessage">
-                    <p>happy birthday, fadwa.</p>
-                    <p>all your dreams, waiting for you.</p>
+                <!-- final message (appears after all dreams) -->
+                <div class="final-message" id="finalMessage">
+                    <p>happy birthday fadwa</p>
+                    <p>all your dreams are waiting</p>
                 </div>
             </div>
         </section>
