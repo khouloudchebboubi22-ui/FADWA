@@ -3,73 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌻 Happy 16th Birthday Fadwa! 🌻</title>
+    <title>happy 16th birthday fadwa</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- animated background -->
-    <div class="gradient-bg">
-        <div class="gradient-sphere sphere1"></div>
-        <div class="gradient-sphere sphere2"></div>
-        <div class="gradient-sphere sphere3"></div>
-    </div>
+    <!-- soft gradient background -->
+    <div class="bg-gradient"></div>
 
-    <!-- floating petals -->
-    <div class="petal-container" id="petalContainer"></div>
-
-    <main class="birthday-experience">
-        <!-- SCENE 1: SUNFLOWER BOUQUET (Realistic & Gorgeous) -->
+    <main class="experience">
+        <!-- SCENE 1: SUNFLOWER BOUQUET -->
         <section id="scene1" class="scene active">
-            <div class="bouquet-container">
-                <h1 class="elegant-title">for you, fadwa</h1>
+            <div class="content-center">
+                <!-- elegant title -->
+                <h1 class="gentle-title">for fadwa</h1>
                 
-                <!-- realistic sunflower bouquet -->
-                <div class="sunflower-bouquet" id="sunflowerBouquet">
-                    <!-- main large sunflowers -->
-                    <div class="sunflower main-sunflower sf1">
-                        <div class="flower-head">
-                            <div class="petal" style="--rot: 0deg"></div>
-                            <div class="petal" style="--rot: 30deg"></div>
-                            <div class="petal" style="--rot: 60deg"></div>
-                            <div class="petal" style="--rot: 90deg"></div>
-                            <div class="petal" style="--rot: 120deg"></div>
-                            <div class="petal" style="--rot: 150deg"></div>
-                            <div class="petal" style="--rot: 180deg"></div>
-                            <div class="petal" style="--rot: 210deg"></div>
-                            <div class="petal" style="--rot: 240deg"></div>
-                            <div class="petal" style="--rot: 270deg"></div>
-                            <div class="petal" style="--rot: 300deg"></div>
-                            <div class="petal" style="--rot: 330deg"></div>
-                            <div class="flower-center">
-                                <div class="center-texture"></div>
-                                <div class="center-detail"></div>
-                            </div>
-                        </div>
-                        <div class="stem"></div>
-                    </div>
-
-                    <div class="sunflower main-sunflower sf2">
-                        <div class="flower-head">
-                            <div class="petal" style="--rot: 15deg"></div>
-                            <div class="petal" style="--rot: 45deg"></div>
-                            <div class="petal" style="--rot: 75deg"></div>
-                            <div class="petal" style="--rot: 105deg"></div>
-                            <div class="petal" style="--rot: 135deg"></div>
-                            <div class="petal" style="--rot: 165deg"></div>
-                            <div class="petal" style="--rot: 195deg"></div>
-                            <div class="petal" style="--rot: 225deg"></div>
-                            <div class="petal" style="--rot: 255deg"></div>
-                            <div class="petal" style="--rot: 285deg"></div>
-                            <div class="petal" style="--rot: 315deg"></div>
-                            <div class="petal" style="--rot: 345deg"></div>
-                            <div class="flower-center"></div>
-                        </div>
-                        <div class="stem"></div>
-                    </div>
-
-                    <div class="sunflower main-sunflower sf3">
-                        <div class="flower-head">
+                <!-- sunflower bouquet -->
+                <div class="bouquet" id="bouquet">
+                    <div class="sunflower large">
+                        <div class="flower">
                             <div class="petal" style="--rot: 0deg"></div>
                             <div class="petal" style="--rot: 45deg"></div>
                             <div class="petal" style="--rot: 90deg"></div>
@@ -78,323 +30,172 @@
                             <div class="petal" style="--rot: 225deg"></div>
                             <div class="petal" style="--rot: 270deg"></div>
                             <div class="petal" style="--rot: 315deg"></div>
-                            <div class="flower-center"></div>
+                            <div class="center"></div>
                         </div>
                         <div class="stem"></div>
                     </div>
-
-                    <!-- smaller accent sunflowers -->
-                    <div class="sunflower small-sunflower ss1">
-                        <div class="flower-head small">
-                            <div class="petal small"></div>
-                            <div class="petal small"></div>
-                            <div class="petal small"></div>
-                            <div class="petal small"></div>
-                            <div class="petal small"></div>
-                            <div class="petal small"></div>
-                            <div class="flower-center small"></div>
-                        </div>
-                        <div class="stem small"></div>
-                    </div>
-
-                    <div class="sunflower small-sunflower ss2">
-                        <div class="flower-head small">
-                            <div class="petal small"></div>
-                            <div class="petal small"></div>
-                            <div class="petal small"></div>
-                            <div class="petal small"></div>
-                            <div class="petal small"></div>
-                            <div class="petal small"></div>
-                            <div class="flower-center small"></div>
-                        </div>
-                        <div class="stem small"></div>
-                    </div>
-
-                    <!-- leaves and greenery -->
-                    <div class="leaf-bunch left"></div>
-                    <div class="leaf-bunch right"></div>
-                    <div class="baby-breath"></div>
                     
-                    <!-- wrapping paper -->
-                    <div class="bouquet-wrap"></div>
-                    <div class="wrap-ribbon"></div>
+                    <div class="sunflower medium">
+                        <div class="flower">
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="center small"></div>
+                        </div>
+                        <div class="stem"></div>
+                    </div>
+                    
+                    <div class="sunflower small">
+                        <div class="flower">
+                            <div class="petal tiny"></div>
+                            <div class="petal tiny"></div>
+                            <div class="petal tiny"></div>
+                            <div class="petal tiny"></div>
+                            <div class="petal tiny"></div>
+                            <div class="petal tiny"></div>
+                            <div class="center tiny"></div>
+                        </div>
+                        <div class="stem light"></div>
+                    </div>
+                    
+                    <!-- greenery -->
+                    <div class="leaf left"></div>
+                    <div class="leaf right"></div>
                 </div>
-
-                <!-- floating name -->
-                <div class="floating-name-container">
-                    <span class="floating-name">fadwa</span>
-                    <span class="age-badge">16</span>
+                
+                <!-- name and age -->
+                <div class="name-age">
+                    <span class="name">fadwa</span>
+                    <span class="age">16</span>
                 </div>
-
+                
                 <!-- gift box -->
-                <div class="elegant-gift" id="giftBox">
-                    <div class="gift-lid">
-                        <div class="lid-bow"></div>
-                    </div>
-                    <div class="gift-base">
-                        <div class="ribbon horizontal"></div>
-                        <div class="ribbon vertical"></div>
-                    </div>
-                    <div class="gift-glow"></div>
+                <div class="gift" id="giftBox">
+                    <div class="gift-lid"></div>
+                    <div class="gift-base"></div>
+                    <div class="ribbon"></div>
                 </div>
-
-                <p class="gift-instruction">open your gift</p>
+                
+                <p class="light-text">open your gift</p>
             </div>
         </section>
 
-        <!-- SCENE 2: GIFT CONTENTS - THREE SURPRISES -->
+        <!-- SCENE 2: GIFT CONTENTS -->
         <section id="scene2" class="scene">
-            <div class="gift-unveil">
-                <h2 class="scene-title fade-in">surprises for you</h2>
+            <div class="content-center">
+                <h2 class="section-title">inside your gift</h2>
                 
-                <div class="surprise-items">
-                    <!-- More Flowers -->
-                    <div class="surprise-card" id="flowerSurprise">
-                        <div class="card-inner">
-                            <div class="card-front">
-                                <div class="mini-bouquet">
-                                    <div class="mini-flower"></div>
-                                    <div class="mini-flower"></div>
-                                    <div class="mini-flower"></div>
-                                </div>
-                            </div>
-                            <div class="card-back">
-                                <p>more sunflowers<br>because you deserve endless beauty</p>
-                            </div>
+                <div class="gift-items">
+                    <!-- more flowers -->
+                    <div class="gift-item" id="flowerItem">
+                        <div class="item-circle">
+                            <div class="mini-flower"></div>
                         </div>
-                        <span class="surprise-label">flowers</span>
+                        <span>more flowers</span>
                     </div>
-
-                    <!-- Chocolate -->
-                    <div class="surprise-card" id="chocolateSurprise">
-                        <div class="card-inner">
-                            <div class="card-front">
-                                <div class="chocolate-box">
-                                    <div class="chocolate"></div>
-                                    <div class="chocolate"></div>
-                                    <div class="chocolate"></div>
-                                </div>
-                            </div>
-                            <div class="card-back">
-                                <p>sweet just like you<br>enjoy every piece</p>
-                            </div>
+                    
+                    <!-- chocolate -->
+                    <div class="gift-item" id="chocolateItem">
+                        <div class="item-circle">
+                            <div class="mini-chocolate"></div>
                         </div>
-                        <span class="surprise-label">chocolate</span>
+                        <span>chocolate</span>
                     </div>
-
-                    <!-- Letter -->
-                    <div class="surprise-card" id="letterSurprise">
-                        <div class="card-inner">
-                            <div class="card-front">
-                                <div class="letter-envelope">
-                                    <div class="envelope-flap"></div>
-                                    <div class="envelope-body"></div>
-                                </div>
-                            </div>
-                            <div class="card-back">
-                                <p>a letter just for you<br>click to open</p>
-                            </div>
+                    
+                    <!-- letter -->
+                    <div class="gift-item" id="letterItem">
+                        <div class="item-circle">
+                            <div class="mini-letter"></div>
                         </div>
-                        <span class="surprise-label">letter</span>
+                        <span>letter</span>
                     </div>
                 </div>
-
-                <p class="interaction-hint">click each surprise</p>
+                
+                <p class="light-text small">tap each one</p>
             </div>
         </section>
 
-        <!-- SCENE 3: THE LETTER (Personal Message) -->
+        <!-- SCENE 3: THE LETTER -->
         <section id="scene3" class="scene">
-            <div class="letter-container">
-                <div class="elegant-letter">
-                    <div class="letter-header">
-                        <span class="sunflower-icon">🌻</span>
-                        <h3>for my sister</h3>
-                        <span class="sunflower-icon">🌻</span>
-                    </div>
-                    
-                    <div class="letter-body">
-                        <p class="letter-line">my dearest fadwa,</p>
-                        <p class="letter-line">on your 16th birthday, i wanted to give you something special — a little piece of my heart wrapped in sunflowers, because that's what you are to me.</p>
-                        <p class="letter-line">you're not just my sister; you're my inspiration. i see the way you light up when you talk about your dreams, and i know with all my heart that you'll achieve every single one.</p>
-                        <p class="letter-line">paris is waiting for you. the kitchens of the world are waiting for your magic touch. every country, every culture, every flavor — they're all part of your beautiful future.</p>
-                        <p class="letter-line">as you blow out your candles today, know that i'm here cheering for you, always. your dreams are valid, your passion is powerful, and your heart is golden — just like the sunflowers you love.</p>
-                        <p class="letter-line signature">with all my love,<br>your sister</p>
-                    </div>
-                    
-                    <div class="letter-footer">
-                        <span>🕯️</span>
-                        <span>16</span>
-                        <span>🕯️</span>
-                    </div>
+            <div class="letter-card">
+                <div class="letter-content">
+                    <p class="line">my dearest fadwa,</p>
+                    <p class="line">on your 16th birthday,</p>
+                    <p class="line">i wanted to give you something special.</p>
+                    <p class="line">sunflowers because you light up every room,</p>
+                    <p class="line">chocolate because you're so sweet,</p>
+                    <p class="line">and this letter to tell you:</p>
+                    <p class="line">i believe in your dreams.</p>
+                    <p class="line">study abroad, become a chef,</p>
+                    <p class="line">travel the world —</p>
+                    <p class="line">you can do it all.</p>
+                    <p class="line signature">with love, your sister</p>
                 </div>
                 
-                <button class="dream-button" id="toDreamsBtn">see your dreams ✧</button>
+                <button class="continue-btn" id="toCakeBtn">continue →</button>
             </div>
         </section>
 
-        <!-- SCENE 4: DREAMS - EIFFEL TOWER & MORE -->
+        <!-- SCENE 4: BIRTHDAY CAKE -->
         <section id="scene4" class="scene">
-            <div class="dreams-showcase">
-                <h2 class="dreams-main-title">your beautiful dreams</h2>
+            <div class="content-center">
+                <h2 class="section-title">time to celebrate</h2>
                 
-                <div class="eiffel-tower-stage" id="eiffelStage">
-                    <!-- Eiffel Tower -->
-                    <div class="tower-container">
-                        <div class="eiffel-tower">
-                            <div class="tower-base"></div>
-                            <div class="tower-leg left"></div>
-                            <div class="tower-leg right"></div>
-                            <div class="tower-arch"></div>
-                            <div class="tower-level first"></div>
-                            <div class="tower-level second"></div>
-                            <div class="tower-level third"></div>
-                            <div class="tower-top"></div>
-                            <div class="tower-antenna"></div>
-                            
-                            <!-- glowing lights -->
-                            <div class="tower-lights"></div>
-                        </div>
-                        
-                        <!-- Dream cards that appear -->
-                        <div class="dream-card study-dream" id="dreamStudy">
-                            <div class="dream-icon">📚</div>
-                            <h4>study abroad</h4>
-                            <p>paris · london · tokyo</p>
-                            <div class="dream-glow"></div>
-                        </div>
-                        
-                        <div class="dream-card chef-dream" id="dreamChef">
-                            <div class="dream-icon">👩‍🍳</div>
-                            <h4>become a chef</h4>
-                            <p>create · taste · inspire</p>
-                            <div class="dream-glow"></div>
-                        </div>
-                        
-                        <div class="dream-card travel-dream" id="dreamTravel">
-                            <div class="dream-icon">✈️</div>
-                            <h4>travel the world</h4>
-                            <p>explore every culture</p>
-                            <div class="dream-glow"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- floating dream symbols -->
-                    <div class="floating-symbol paris">🇫🇷</div>
-                    <div class="floating-symbol chef">🍳</div>
-                    <div class="floating-symbol globe">🌍</div>
-                    <div class="floating-symbol passport">🛂</div>
-                </div>
-                
-                <p class="dream-instruction">click the eiffel tower to see your dreams</p>
-                
-                <div class="dream-progress">
-                    <div class="progress-dots">
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SCENE 5: 16TH BIRTHDAY CAKE WITH CANDLES -->
-        <section id="scene5" class="scene">
-            <div class="cake-celebration">
-                <h2 class="cake-title">time to celebrate</h2>
-                
-                <div class="birthday-cake-container">
-                    <!-- Candles -->
-                    <div class="candles-row">
+                <div class="cake-container">
+                    <!-- candles row -->
+                    <div class="candles">
                         <div class="candle" id="candle1">
-                            <div class="flame" id="flame1"></div>
-                            <div class="candle-wax"></div>
+                            <div class="flame"></div>
+                            <div class="wax"></div>
                         </div>
                         <div class="candle" id="candle2">
-                            <div class="flame" id="flame2"></div>
-                            <div class="candle-wax"></div>
+                            <div class="flame"></div>
+                            <div class="wax"></div>
                         </div>
                         <div class="candle" id="candle3">
-                            <div class="flame" id="flame3"></div>
-                            <div class="candle-wax"></div>
+                            <div class="flame"></div>
+                            <div class="wax"></div>
                         </div>
                         <div class="candle" id="candle4">
-                            <div class="flame" id="flame4"></div>
-                            <div class="candle-wax"></div>
+                            <div class="flame"></div>
+                            <div class="wax"></div>
                         </div>
                         <div class="candle" id="candle5">
-                            <div class="flame" id="flame5"></div>
-                            <div class="candle-wax"></div>
+                            <div class="flame"></div>
+                            <div class="wax"></div>
                         </div>
                         <div class="candle" id="candle6">
-                            <div class="flame" id="flame6"></div>
-                            <div class="candle-wax"></div>
+                            <div class="flame"></div>
+                            <div class="wax"></div>
                         </div>
                     </div>
                     
-                    <!-- 3-Tier Cake -->
+                    <!-- simple cake -->
                     <div class="cake">
-                        <div class="cake-tier tier1">
-                            <div class="icing"></div>
-                            <div class="sprinkles"></div>
-                        </div>
-                        <div class="cake-tier tier2">
-                            <div class="icing"></div>
-                            <div class="sprinkles"></div>
-                        </div>
-                        <div class="cake-tier tier3">
-                            <div class="icing"></div>
-                            <div class="sprinkles"></div>
-                        </div>
-                        
-                        <!-- cake decorations -->
-                        <div class="cake-topper">16</div>
-                        <div class="cake-hearts"></div>
+                        <div class="cake-tier"></div>
+                        <div class="cake-tier middle"></div>
+                        <div class="cake-tier top"></div>
+                        <div class="cake-number">16</div>
                     </div>
-                    
-                    <!-- plate -->
-                    <div class="cake-plate"></div>
                 </div>
                 
-                <!-- blow instruction -->
-                <div class="blow-area" id="blowArea">
-                    <div class="blow-prompt">
-                        <span class="blow-text">blow the candles</span>
-                        <span class="blow-icon">🕯️</span>
-                    </div>
-                    
-                    <!-- blow meter -->
-                    <div class="blow-meter" id="blowMeter">
-                        <div class="meter-fill" id="meterFill"></div>
-                    </div>
-                    
-                    <p class="blow-hint">click or blow (tap repeatedly)</p>
-                </div>
+                <p class="light-text" id="cakeInstruction">tap each candle</p>
                 
-                <!-- Final Birthday Message (appears after blowing) -->
-                <div class="final-birthday-message" id="finalMessage">
-                    <div class="fireworks"></div>
-                    <h1 class="happy-birthday">happy 16th birthday</h1>
-                    <h2 class="birthday-name">fadwa</h2>
-                    
-                    <div class="birthday-wish">
-                        <p>may all your dreams bloom like sunflowers</p>
-                    </div>
-                    
-                    <div class="celebration-emoji">
-                        <span>🌻</span>
-                        <span>🎂</span>
-                        <span>✨</span>
-                        <span>💛</span>
-                        <span>🌻</span>
-                    </div>
-                    
-                    <button class="celebrate-again" id="replayBtn">celebrate again ✧</button>
+                <!-- birthday message (appears after all candles) -->
+                <div class="birthday-message" id="birthdayMessage">
+                    <h1>happy birthday</h1>
+                    <h2>fadwa</h2>
+                    <div class="sunflower-emoji">🌻</div>
                 </div>
             </div>
             
-            <!-- confetti canvas -->
-            <canvas id="confettiCanvas"></canvas>
+            <!-- simple confetti canvas -->
+            <canvas id="confetti"></canvas>
         </section>
     </main>
 
