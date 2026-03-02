@@ -5,17 +5,17 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background: #faf7f2;
+    font-family: 'Space Grotesk', sans-serif;
+    background: #f5f0e8;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #2c3e50;
+    color: #2d2d2d;
 }
 
-/* Ambient sunflowers - very minimal */
-.ambient {
+/* floating background elements */
+.floating-bg {
     position: fixed;
     top: 0;
     left: 0;
@@ -25,57 +25,72 @@ body {
     z-index: 0;
 }
 
-.ambient-sunflower {
+.float {
     position: absolute;
     width: 4px;
     height: 4px;
-    background: #f1c40f;
+    background: #e6b450;
     border-radius: 50%;
     opacity: 0.15;
 }
 
-.ambient-sunflower:nth-child(1) {
+.float:nth-child(1) {
     top: 15%;
     left: 10%;
-    width: 60px;
-    height: 60px;
-    box-shadow: 0 0 0 2px rgba(241, 196, 15, 0.1);
+    width: 80px;
+    height: 80px;
+    box-shadow: 0 0 0 2px #e6b45020;
+    animation: float 25s infinite;
 }
 
-.ambient-sunflower:nth-child(2) {
-    bottom: 10%;
-    right: 5%;
+.float:nth-child(2) {
+    bottom: 20%;
+    right: 15%;
     width: 120px;
     height: 120px;
-    box-shadow: 0 0 0 3px rgba(241, 196, 15, 0.08);
+    box-shadow: 0 0 0 3px #e6b45015;
+    animation: float 30s infinite reverse;
 }
 
-.ambient-sunflower:nth-child(3) {
+.float:nth-child(3) {
     top: 40%;
-    right: 20%;
+    right: 25%;
     width: 40px;
     height: 40px;
-    box-shadow: 0 0 0 2px rgba(241, 196, 15, 0.12);
+    box-shadow: 0 0 0 2px #e6b45025;
+    animation: float 20s infinite;
 }
 
-/* Container */
-.container {
+.float:nth-child(4) {
+    bottom: 30%;
+    left: 20%;
+    width: 60px;
+    height: 60px;
+    box-shadow: 0 0 0 2px #e6b45020;
+    animation: float 22s infinite reverse;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(20px, -20px) rotate(120deg); }
+    66% { transform: translate(-20px, 20px) rotate(240deg); }
+}
+
+/* main app */
+.app {
     position: relative;
     z-index: 1;
     width: 100%;
-    max-width: 1000px;
+    max-width: 800px;
     padding: 2rem;
 }
 
-/* Scenes */
+/* scenes */
 .scene {
     display: none;
     opacity: 0;
-    transition: opacity 0.6s ease;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     min-height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .scene.active {
@@ -83,57 +98,62 @@ body {
     opacity: 1;
 }
 
-/* Scene 1: Sunflower & Gift */
-#scene-gift {
+.center-content {
+    width: 100%;
+    display: flex;
     flex-direction: column;
-    gap: 3rem;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
 }
 
-.sunflower-field {
-    text-align: center;
+/* scene 1 - sunflower + gift */
+.sunflower-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeSlideUp 0.6s ease;
 }
 
-.sunflower.main {
-    display: inline-block;
+.sunflower {
     position: relative;
-    width: 120px;
-    height: 200px;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
-.flower {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    margin: 0 auto;
+.sunflower:hover {
+    transform: rotate(5deg);
 }
 
 .petal {
     position: absolute;
-    width: 30px;
-    height: 30px;
-    background: #f1c40f;
+    width: 24px;
+    height: 24px;
+    background: #e6b450;
     border-radius: 50% 50% 0 50%;
     opacity: 0.9;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
 }
 
-.sunflower.main:hover .petal {
-    transform: rotate(45deg) translate(25px, 25px);
+.sunflower:hover .petal {
+    transform: translate(2px, -2px);
 }
 
-.petal:nth-child(1) { transform: rotate(0deg) translate(25px, 25px); }
-.petal:nth-child(2) { transform: rotate(45deg) translate(25px, 25px); }
-.petal:nth-child(3) { transform: rotate(90deg) translate(25px, 25px); }
-.petal:nth-child(4) { transform: rotate(135deg) translate(25px, 25px); }
-.petal:nth-child(5) { transform: rotate(180deg) translate(25px, 25px); }
-.petal:nth-child(6) { transform: rotate(225deg) translate(25px, 25px); }
-.petal:nth-child(7) { transform: rotate(270deg) translate(25px, 25px); }
-.petal:nth-child(8) { transform: rotate(315deg) translate(25px, 25px); }
+.petal:nth-child(1) { transform: rotate(0deg) translate(20px, 20px); }
+.petal:nth-child(2) { transform: rotate(45deg) translate(20px, 20px); }
+.petal:nth-child(3) { transform: rotate(90deg) translate(20px, 20px); }
+.petal:nth-child(4) { transform: rotate(135deg) translate(20px, 20px); }
+.petal:nth-child(5) { transform: rotate(180deg) translate(20px, 20px); }
+.petal:nth-child(6) { transform: rotate(225deg) translate(20px, 20px); }
+.petal:nth-child(7) { transform: rotate(270deg) translate(20px, 20px); }
+.petal:nth-child(8) { transform: rotate(315deg) translate(20px, 20px); }
 
 .center {
     position: absolute;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     background: #8b5a2b;
     border-radius: 50%;
     top: 50%;
@@ -142,35 +162,30 @@ body {
 }
 
 .stem {
-    width: 3px;
-    height: 100px;
-    background: #27ae60;
-    margin: 0 auto;
-    position: relative;
-    top: -10px;
+    width: 2px;
+    height: 60px;
+    background: #7fb07f;
+    margin-top: -5px;
 }
 
-.name {
-    font-size: 2rem;
+.name-title {
     font-weight: 300;
-    letter-spacing: 4px;
+    font-size: 2rem;
+    letter-spacing: 6px;
     color: #8b5a2b;
-    margin-top: 1rem;
     text-transform: lowercase;
+    margin: 1rem 0;
+    animation: fadeSlideUp 0.6s 0.1s both;
 }
 
-/* Gift Box */
-.gift-container {
-    text-align: center;
-}
-
+/* gift box */
 .gift-box {
     position: relative;
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 1rem;
+    width: 70px;
+    height: 70px;
     cursor: pointer;
     transition: transform 0.3s ease;
+    animation: fadeSlideUp 0.6s 0.2s both;
 }
 
 .gift-box:hover {
@@ -179,169 +194,171 @@ body {
 
 .gift-lid {
     position: absolute;
-    width: 110px;
-    height: 20px;
+    width: 80px;
+    height: 12px;
     background: #d4a5a5;
-    top: -10px;
+    top: -6px;
     left: -5px;
-    border-radius: 4px;
-    transition: transform 0.3s ease;
+    border-radius: 2px;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 3;
 }
 
 .gift-box.opened .gift-lid {
-    transform: translateY(-20px) rotate(5deg);
+    transform: translateY(-20px) rotate(3deg);
 }
 
-.gift-body {
+.gift-base {
     position: absolute;
-    width: 100px;
-    height: 90px;
+    width: 70px;
+    height: 64px;
     background: #e8b4b4;
     bottom: 0;
-    border-radius: 4px;
+    border-radius: 2px;
 }
 
-.gift-ribbon {
+.ribbon {
     position: absolute;
+    width: 70px;
+    height: 8px;
     background: #f39c12;
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 2;
 }
 
-.gift-ribbon.horizontal {
-    width: 100px;
-    height: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.gift-ribbon.vertical {
-    width: 10px;
-    height: 90px;
+.ribbon::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 64px;
+    background: #f39c12;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 0;
+    top: -28px;
 }
 
-.gift-prompt {
-    font-size: 0.9rem;
-    color: #7f8c8d;
-    letter-spacing: 1px;
+/* hint text */
+.hint {
+    font-size: 0.75rem;
+    color: #b8b8b8;
+    letter-spacing: 2px;
     text-transform: uppercase;
+    margin-top: 1rem;
+    animation: fadeIn 0.6s 0.3s both;
 }
 
-/* Scene 2: Gift Contents */
-#scene-gift-content {
-    align-items: center;
-}
-
-.gift-content {
-    background: white;
-    padding: 3rem;
-    border-radius: 24px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
-
-.gift-items {
+/* scene 2 - gift items */
+.items-grid {
     display: flex;
     gap: 3rem;
     justify-content: center;
     flex-wrap: wrap;
+    margin: 2rem 0;
+    animation: fadeSlideUp 0.6s ease;
 }
 
-.gift-item {
+.item {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.8rem;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: fadeSlideUp 0.5s forwards;
 }
 
-.gift-item:hover {
-    transform: translateY(-5px);
+.item:nth-child(1) { animation-delay: 0.1s; }
+.item:nth-child(2) { animation-delay: 0.2s; }
+.item:nth-child(3) { animation-delay: 0.3s; }
+
+.item:hover {
+    transform: translateY(-4px);
 }
 
-.gift-item span {
-    font-size: 0.9rem;
+.item:active {
+    transform: scale(0.95);
+}
+
+.item-label {
+    font-size: 0.8rem;
     color: #7f8c8d;
     text-transform: lowercase;
+    letter-spacing: 1px;
 }
 
-/* Mini Sunflower */
-.mini-sunflower {
-    width: 40px;
-    height: 40px;
-    background: #f1c40f;
+/* item icons */
+.item-icon {
+    width: 45px;
+    height: 45px;
+    transition: all 0.3s ease;
+}
+
+.sunflower-icon {
+    background: #e6b450;
     border-radius: 50%;
     position: relative;
-    box-shadow: 0 0 0 4px #f1c40f33;
+    box-shadow: 0 0 0 3px #e6b45030;
 }
 
-.mini-sunflower::before,
-.mini-sunflower::after {
+.sunflower-icon::before,
+.sunflower-icon::after {
     content: '';
     position: absolute;
-    width: 20px;
-    height: 20px;
-    background: #f1c40f;
+    width: 18px;
+    height: 18px;
+    background: #e6b450;
     border-radius: 50% 50% 0 50%;
-    top: -10px;
-    left: 10px;
+    top: -5px;
+    left: 5px;
 }
 
-.mini-sunflower::after {
+.sunflower-icon::after {
     top: auto;
-    bottom: -10px;
+    bottom: -5px;
     transform: rotate(180deg);
 }
 
-/* Chocolate */
-.chocolate-piece {
-    width: 30px;
-    height: 30px;
+.chocolate-icon {
     background: #8b4513;
-    border-radius: 4px;
+    border-radius: 2px;
     box-shadow: 2px 2px 0 #5d3a1a;
 }
 
-/* Letter Icon */
 .letter-icon {
-    width: 35px;
-    height: 25px;
     background: #f9e5d3;
     border: 1px solid #d4a5a5;
+    border-radius: 1px;
     position: relative;
-    border-radius: 2px;
 }
 
 .letter-icon::before {
     content: '';
     position: absolute;
-    top: -8px;
-    left: 0;
-    right: 0;
+    top: -5px;
+    left: -1px;
+    right: -1px;
     height: 8px;
     background: #f9e5d3;
     border: 1px solid #d4a5a5;
     border-bottom: none;
-    border-radius: 2px 2px 0 0;
+    border-radius: 1px 1px 0 0;
 }
 
-/* Scene 3: Letter */
-#scene-letter {
-    align-items: center;
-}
-
+/* scene 3 - letter */
 .letter-container {
-    max-width: 500px;
+    max-width: 450px;
     width: 100%;
+    margin: 0 auto;
+    animation: fadeSlideUp 0.6s ease;
 }
 
 .letter-paper {
-    background: #fffdf9;
-    padding: 3rem;
-    border-radius: 4px;
-    box-shadow: 0 5px 30px rgba(0,0,0,0.05);
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 2px;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.02);
     margin-bottom: 2rem;
     border: 1px solid #f0e5d8;
 }
@@ -356,14 +373,18 @@ body {
 
 .letter-header h2 {
     font-weight: 300;
-    font-size: 1.5rem;
-    letter-spacing: 2px;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
     color: #8b5a2b;
+    text-transform: lowercase;
 }
 
-.sunflower-mark {
-    color: #f1c40f;
-    font-size: 1.2rem;
+.dot {
+    width: 4px;
+    height: 4px;
+    background: #e6b450;
+    border-radius: 50%;
+    opacity: 0.5;
 }
 
 .letter-body p {
@@ -371,241 +392,256 @@ body {
     line-height: 1.8;
     color: #4a4a4a;
     font-weight: 300;
+    font-size: 0.95rem;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
 }
+
+.letter-body p:nth-child(1) { animation-delay: 0.1s; }
+.letter-body p:nth-child(2) { animation-delay: 0.2s; }
+.letter-body p:nth-child(3) { animation-delay: 0.3s; }
+.letter-body p:nth-child(4) { animation-delay: 0.4s; }
+.letter-body p:nth-child(5) { animation-delay: 0.5s; }
 
 .signature {
     font-style: italic;
-    margin-top: 2rem;
     color: #8b5a2b;
+    margin-top: 2rem;
 }
 
-.continue-btn {
+/* button */
+.btn {
     background: none;
     border: 1px solid #d4a5a5;
-    padding: 1rem 2rem;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
+    padding: 0.9rem 2rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem;
     color: #8b5a2b;
     cursor: pointer;
     transition: all 0.3s ease;
     width: 100%;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    text-transform: lowercase;
 }
 
-.continue-btn:hover {
+.btn:hover {
     background: #8b5a2b;
     color: white;
     border-color: #8b5a2b;
 }
 
-/* Scene 4: Dreams - Eiffel Tower */
-#scene-dreams {
-    align-items: center;
+.btn:active {
+    transform: scale(0.98);
 }
 
-.dreams-container {
-    text-align: center;
-    max-width: 600px;
+/* scene 4 - dreams */
+.dreams-view {
     width: 100%;
+    text-align: center;
 }
 
 .dreams-title {
     font-weight: 300;
-    font-size: 1.8rem;
-    letter-spacing: 3px;
+    font-size: 1.5rem;
+    letter-spacing: 4px;
     color: #8b5a2b;
     margin-bottom: 3rem;
     text-transform: lowercase;
+    animation: fadeSlideUp 0.6s ease;
 }
 
-/* Eiffel Tower */
-.eiffel-tower {
+.tower-container {
     position: relative;
-    width: 200px;
-    height: 350px;
-    margin: 0 auto 2rem;
+    width: 150px;
+    height: 280px;
+    margin: 0 auto 3rem;
     cursor: pointer;
 }
 
-.tower-base {
+.tower {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.2s ease;
+}
+
+.tower:active {
+    transform: scale(0.98);
+}
+
+.level {
     position: absolute;
-    bottom: 0;
-    width: 180px;
-    height: 20px;
-    background: #4a4a4a;
-    left: 10px;
-    border-radius: 4px 4px 0 0;
-}
-
-.tower-leg {
-    position: absolute;
-    width: 30px;
-    height: 100px;
-    background: #4a4a4a;
-    bottom: 20px;
-}
-
-.tower-leg.left {
-    left: 30px;
-    transform: skewX(-5deg);
-}
-
-.tower-leg.right {
-    right: 30px;
-    transform: skewX(5deg);
-}
-
-.tower-first {
-    position: absolute;
-    width: 100px;
-    height: 15px;
-    background: #4a4a4a;
-    bottom: 110px;
-    left: 50px;
-    border-radius: 4px;
-}
-
-.tower-second {
-    position: absolute;
-    width: 60px;
-    height: 80px;
-    background: #4a4a4a;
-    bottom: 125px;
-    left: 70px;
-}
-
-.tower-top {
-    position: absolute;
-    width: 30px;
-    height: 60px;
-    background: #4a4a4a;
-    bottom: 200px;
-    left: 85px;
-}
-
-.tower-antenna {
-    position: absolute;
-    width: 2px;
-    height: 30px;
-    background: #4a4a4a;
-    bottom: 260px;
-    left: 99px;
-}
-
-/* Dream Lights */
-.dream-light {
-    position: absolute;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    pointer-events: none;
-    z-index: 10;
-}
-
-.dream-light.active {
-    opacity: 1;
-}
-
-.dream-light.study {
-    top: 30%;
-    left: -100px;
-    width: 200px;
-}
-
-.dream-light.chef {
-    top: 50%;
-    right: -100px;
-    width: 200px;
-}
-
-.dream-light.travel {
-    bottom: 20%;
     left: 50%;
     transform: translateX(-50%);
-    width: 250px;
+    background: #4a4a4a;
+    transition: all 0.3s ease;
 }
 
-.light-content {
+.level.base {
+    bottom: 0;
+    width: 130px;
+    height: 12px;
+}
+
+.level.first {
+    bottom: 12px;
+    width: 90px;
+    height: 60px;
+}
+
+.level.second {
+    bottom: 72px;
+    width: 60px;
+    height: 80px;
+}
+
+.level.third {
+    bottom: 152px;
+    width: 30px;
+    height: 70px;
+}
+
+.level.tip {
+    bottom: 222px;
+    width: 4px;
+    height: 30px;
+}
+
+/* dream cards */
+.dream-card {
+    position: absolute;
     background: white;
-    padding: 1.5rem;
-    border-radius: 4px;
-    box-shadow: 0 5px 20px rgba(241, 196, 15, 0.15);
+    padding: 1.2rem;
+    border-radius: 2px;
+    box-shadow: 0 5px 25px rgba(230, 180, 80, 0.1);
     border: 1px solid #f0e5d8;
-}
-
-.light-content h3 {
-    font-weight: 400;
-    color: #8b5a2b;
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
-}
-
-.light-content p {
-    font-weight: 300;
-    font-size: 0.9rem;
-    color: #7f8c8d;
-    line-height: 1.6;
-}
-
-.dream-instruction {
-    font-size: 0.9rem;
-    color: #b8b8b8;
-    margin: 2rem 0;
-    letter-spacing: 1px;
-}
-
-/* Birthday Message */
-.birthday-message {
-    margin-top: 3rem;
+    width: 200px;
     opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.8s ease;
+    transition: all 0.4s ease;
+    pointer-events: none;
+    text-align: left;
 }
 
-.birthday-message.show {
+.dream-card.active {
     opacity: 1;
     transform: translateY(0);
 }
 
-.birthday-message p {
-    font-size: 1.5rem;
+.dream-card h3 {
+    font-weight: 500;
+    font-size: 1rem;
+    color: #8b5a2b;
+    margin-bottom: 0.3rem;
+    letter-spacing: 1px;
+}
+
+.dream-card p {
+    font-weight: 300;
+    font-size: 0.8rem;
+    color: #7f8c8d;
+}
+
+#dream1 {
+    top: 10%;
+    left: -180px;
+}
+
+#dream2 {
+    top: 40%;
+    right: -180px;
+}
+
+#dream3 {
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* final message */
+.final-message {
+    margin-top: 3rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.final-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.final-message p {
+    font-size: 1.2rem;
     font-weight: 300;
     color: #8b5a2b;
     line-height: 2;
+    letter-spacing: 2px;
 }
 
-.birthday-message p:first-child {
-    font-size: 2rem;
+.final-message p:first-child {
+    font-size: 1.8rem;
     font-weight: 400;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-    .container {
-        padding: 1rem;
+/* animations */
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
-    
-    .gift-items {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes gentlePulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
+
+/* interactive states */
+.item.clicked {
+    animation: gentlePulse 0.3s ease;
+}
+
+.gift-box {
+    animation: float 6s infinite;
+}
+
+/* responsive */
+@media (max-width: 600px) {
+    .items-grid {
         gap: 2rem;
     }
     
-    .letter-paper {
-        padding: 2rem;
-    }
-    
-    .dream-light.study,
-    .dream-light.chef,
-    .dream-light.travel {
+    #dream1, #dream2, #dream3 {
         position: relative;
         top: auto;
         left: auto;
         right: auto;
         bottom: auto;
         margin: 1rem auto;
+        transform: none;
         width: 100%;
         max-width: 250px;
     }
     
-    .eiffel-tower {
-        margin-bottom: 4rem;
+    .tower-container {
+        height: auto;
+        padding-bottom: 2rem;
+    }
+    
+    .final-message p {
+        font-size: 1rem;
+    }
+    
+    .final-message p:first-child {
+        font-size: 1.4rem;
     }
 }
