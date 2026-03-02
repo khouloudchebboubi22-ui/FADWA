@@ -3,28 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✨ Happy Birthday Fadwa! ✨</title>
+    <title>Fadwa · Birthday</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Floating elements background -->
-    <div class="floating-elements">
-        <div class="floating-sunflower">🌻</div>
-        <div class="floating-sunflower">🌻</div>
-        <div class="floating-sunflower">🌻</div>
-        <div class="floating-sunflower">🌻</div>
-        <div class="floating-sunflower">🌻</div>
-        <div class="floating-sunflower">🌻</div>
+    <!-- Minimal floating elements -->
+    <div class="ambient">
+        <div class="ambient-sunflower"></div>
+        <div class="ambient-sunflower"></div>
+        <div class="ambient-sunflower"></div>
     </div>
 
     <!-- Main container -->
-    <div class="container">
-        <!-- Initial Sunflower Field -->
-        <div id="sunflower-field" class="scene active">
-            <h1 class="glitch-text" data-text="🌻 For Fadwa 🌻">🌻 For Fadwa 🌻</h1>
+    <main class="container">
+        <!-- Scene 1: Sunflower Field & Gift -->
+        <section id="scene-gift" class="scene active">
             <div class="sunflower-field">
-                <div class="sunflower large" id="main-sunflower">
+                <div class="sunflower main">
                     <div class="flower">
                         <div class="petal"></div>
                         <div class="petal"></div>
@@ -34,86 +30,113 @@
                         <div class="petal"></div>
                         <div class="petal"></div>
                         <div class="petal"></div>
-                        <div class="center">✨</div>
+                        <div class="center"></div>
                     </div>
                     <div class="stem"></div>
-                    <div class="leaf left"></div>
-                    <div class="leaf right"></div>
                 </div>
-                <div class="message-overlay">
-                    <p class="click-prompt">Click on the special sunflower to begin! 🌻</p>
-                    <div class="floating-name">Fadwa</div>
+                <p class="name">fadwa</p>
+            </div>
+
+            <!-- Minimal Gift Box -->
+            <div class="gift-container">
+                <div class="gift-box" id="giftBox">
+                    <div class="gift-lid"></div>
+                    <div class="gift-body"></div>
+                    <div class="gift-ribbon horizontal"></div>
+                    <div class="gift-ribbon vertical"></div>
+                </div>
+                <p class="gift-prompt">open your gift</p>
+            </div>
+        </section>
+
+        <!-- Scene 2: Gift Contents -->
+        <section id="scene-gift-content" class="scene">
+            <div class="gift-content">
+                <div class="gift-items">
+                    <div class="gift-item sunflower-gift">
+                        <div class="mini-sunflower"></div>
+                        <span>sunflower</span>
+                    </div>
+                    <div class="gift-item chocolate">
+                        <div class="chocolate-piece"></div>
+                        <span>chocolate</span>
+                    </div>
+                    <div class="gift-item letter" id="openLetter">
+                        <div class="letter-icon"></div>
+                        <span>letter</span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Dreams & Wishes Scene -->
-        <div id="dreams-scene" class="scene">
-            <h2 class="section-title">✨ Your Beautiful Dreams ✨</h2>
+        <!-- Scene 3: The Letter -->
+        <section id="scene-letter" class="scene">
+            <div class="letter-container">
+                <div class="letter-paper">
+                    <div class="letter-header">
+                        <span class="sunflower-mark">🌻</span>
+                        <h2>for fadwa</h2>
+                        <span class="sunflower-mark">🌻</span>
+                    </div>
+                    <div class="letter-body">
+                        <p>my dearest sister,</p>
+                        <p>on your birthday, i wanted to give you something simple — like the sunflowers you love, always turning towards the light.</p>
+                        <p>you have dreams as big as the sky, and i know you'll reach them all. paris is waiting for you. the kitchens of the world are waiting for your touch.</p>
+                        <p>this little gift is just a reminder: i believe in you. always.</p>
+                        <p class="signature">with love,<br>your sister</p>
+                    </div>
+                </div>
+                <button class="continue-btn" id="toDreams">see your dreams →</button>
+            </div>
+        </section>
+
+        <!-- Scene 4: Dreams - Eiffel Tower -->
+        <section id="scene-dreams" class="scene">
             <div class="dreams-container">
-                <div class="dream-card" id="dream-study">
-                    <div class="dream-emoji">📚</div>
-                    <h3>Study Abroad</h3>
-                    <p>Exploring the world, learning new things, and growing every day</p>
-                    <div class="dream-progress">
-                        <div class="progress-bar"></div>
+                <h2 class="dreams-title">your dreams</h2>
+                
+                <div class="eiffel-tower" id="eiffelTower">
+                    <div class="tower-base"></div>
+                    <div class="tower-leg left"></div>
+                    <div class="tower-leg right"></div>
+                    <div class="tower-first"></div>
+                    <div class="tower-second"></div>
+                    <div class="tower-top"></div>
+                    <div class="tower-antenna"></div>
+                    
+                    <!-- Dream Lights (hidden by default) -->
+                    <div class="dream-light study" id="dreamStudy">
+                        <div class="light-content">
+                            <h3>study abroad</h3>
+                            <p>paris, tokyo, new york — the world will be your classroom</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dream-light chef" id="dreamChef">
+                        <div class="light-content">
+                            <h3>become a chef</h3>
+                            <p>creating beauty through food, one dish at a time</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dream-light travel" id="dreamTravel">
+                        <div class="light-content">
+                            <h3>travel the world</h3>
+                            <p>tasting, learning, growing — everywhere you go</p>
+                        </div>
                     </div>
                 </div>
-                <div class="dream-card" id="dream-chef">
-                    <div class="dream-emoji">👩‍🍳</div>
-                    <h3>Become a Chef</h3>
-                    <p>Creating delicious meals and spreading joy through food</p>
-                    <div class="dream-progress">
-                        <div class="progress-bar"></div>
-                    </div>
-                </div>
-                <div class="dream-card" id="dream-travel">
-                    <div class="dream-emoji">✈️</div>
-                    <h3>Travel the World</h3>
-                    <p>Tasting new flavors and experiencing different cultures</p>
-                    <div class="dream-progress">
-                        <div class="progress-bar"></div>
-                    </div>
+                
+                <p class="dream-instruction">click on the tower to see your dreams light up</p>
+                
+                <!-- Final Birthday Message -->
+                <div class="birthday-message" id="birthdayMessage">
+                    <p>happy birthday, fadwa.</p>
+                    <p>all your dreams, waiting for you.</p>
                 </div>
             </div>
-            <button class="continue-btn" id="continue-to-birthday">Click here for your surprise 💫</button>
-        </div>
-
-        <!-- Birthday Message Scene -->
-        <div id="birthday-scene" class="scene">
-            <div class="birthday-content">
-                <div class="sunflower-celebration">
-                    <div class="celebrating-sunflower">🌻</div>
-                    <div class="celebrating-sunflower">🌻</div>
-                    <div class="celebrating-sunflower">🌻</div>
-                </div>
-                <h1 class="birthday-title">🎉 HAPPY BIRTHDAY FADWA! 🎉</h1>
-                <div class="message-card">
-                    <p class="birthday-message">
-                        My dearest sister,<br><br>
-                        On your special day, I wanted to remind you that just like these sunflowers 
-                        that always face the sun, you bring so much light and warmth to everyone around you.<br><br>
-                        I believe in your dreams of studying abroad, becoming an amazing chef, 
-                        and traveling the world. You have the talent, the passion, and the strength 
-                        to achieve absolutely everything you set your heart on.<br><br>
-                        Keep shining, keep dreaming, and never stop being the incredible person you are.<br><br>
-                        With all my love,<br>
-                        Your sister 💛
-                    </p>
-                </div>
-                <div class="sunflower-wishes">
-                    <span class="wish-emoji">🌻</span>
-                    <span class="wish-emoji">💛</span>
-                    <span class="wish-emoji">🌻</span>
-                    <span class="wish-emoji">✨</span>
-                    <span class="wish-emoji">🌻</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Confetti Canvas -->
-    <canvas id="confetti-canvas"></canvas>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
