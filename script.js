@@ -1,206 +1,141 @@
 // Scene management
 const scenes = {
-    sunflower: document.getElementById('sunflower-field'),
-    dreams: document.getElementById('dreams-scene'),
-    birthday: document.getElementById('birthday-scene')
+    gift: document.getElementById('scene-gift'),
+    giftContent: document.getElementById('scene-gift-content'),
+    letter: document.getElementById('scene-letter'),
+    dreams: document.getElementById('scene-dreams')
 };
 
-const mainSunflower = document.getElementById('main-sunflower');
-const continueBtn = document.getElementById('continue-to-birthday');
+// Elements
+const giftBox = document.getElementById('giftBox');
+const openLetter = document.getElementById('openLetter');
+const toDreams = document.getElementById('toDreams');
+const eiffelTower = document.getElementById('eiffelTower');
+const birthdayMessage = document.getElementById('birthdayMessage');
 
-// Confetti setup
-const canvas = document.getElementById('confetti-canvas');
-const ctx = canvas.getContext('2d');
-let confetti = [];
-let animationId = null;
+// Dream lights
+const dreamStudy = document.getElementById('dreamStudy');
+const dreamChef = document.getElementById('dreamChef');
+const dreamTravel = document.getElementById('dreamTravel');
 
-// Set canvas size
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
+let currentDream = null;
 
-// Confetti class
-class ConfettiPiece {
-    constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height - canvas.height;
-        this.size = Math.random() * 10 + 5;
-        this.speedY = Math.random() * 3 + 2;
-        this.speedX = Math.random() * 2 - 1;
-        this.color = `hsl(${Math.random() * 60 + 30}, 100%, 50%)`;
-        this.rotation = Math.random() * 360;
-        this.rotationSpeed = Math.random() * 5;
-    }
-
-    update() {
-        this.y += this.speedY;
-        this.x += this.speedX;
-        this.rotation += this.rotationSpeed;
-
-        if (this.y > canvas.height) {
-            this.y = -10;
-            this.x = Math.random() * canvas.width;
-        }
-    }
-
-    draw() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.rotation * Math.PI / 180);
-        ctx.fillStyle = this.color;
-        ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
-        ctx.restore();
-    }
+// Switch scenes with fade
+function showScene(scene) {
+    Object.values(scenes).forEach(s => {
+        s.classList.remove('active');
+    });
+    scene.classList.add('active');
 }
 
-// Start confetti
-function startConfetti() {
-    for (let i = 0; i < 100; i++) {
-        confetti.push(new ConfettiPiece());
-    }
+// Gift box interaction
+giftBox.addEventListener('click', () => {
+    giftBox.classList.add('opened');
     
-    function animateConfetti() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        confetti.forEach(piece => {
-            piece.update();
-            piece.draw();
-        });
-        
-        animationId = requestAnimationFrame(animateConfetti);
-    }
-    
-    animateConfetti();
-}
-
-// Stop confetti
-function stopConfetti() {
-    if (animationId) {
-        cancelAnimationFrame(animationId);
-        animationId = null;
-    }
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    confetti = [];
-}
-
-// Switch scenes with animation
-function switchScene(fromScene, toScene) {
-    fromScene.classList.remove('active');
-    
+    // Show gift contents after animation
     setTimeout(() => {
-        toScene.classList.add('active');
-        
-        // Start confetti when reaching birthday scene
-        if (toScene === scenes.birthday) {
-            startConfetti();
-        } else {
-            stopConfetti();
-        }
-    }, 100);
-}
-
-// Click on main sunflower
-mainSunflower.addEventListener('click', () => {
-    // Add click animation
-    mainSunflower.style.animation = 'pulse 0.5s';
-    setTimeout(() => {
-        mainSunflower.style.animation = '';
-    }, 500);
-    
-    // Switch to dreams scene
-    switchScene(scenes.sunflower, scenes.dreams);
+        showScene(scenes.giftContent);
+    }, 300);
 });
 
-// Continue to birthday scene
-continueBtn.addEventListener('click', () => {
-    // Add button click animation
-    continueBtn.style.transform = 'scale(0.9)';
-    setTimeout(() => {
-        continueBtn.style.transform = '';
-    }, 200);
-    
-    // Switch to birthday scene
-    switchScene(scenes.dreams, scenes.birthday);
+// Open letter
+openLetter.addEventListener('click', () => {
+    showScene(scenes.letter);
 });
 
-// Add interactive elements to dream cards
-const dreamCards = document.querySelectorAll('.dream-card');
+// Go to dreams
+toDreams.addEventListener('click', () => {
+    showScene(scenes.dreams);
+});
 
-dreamCards.forEach(card => {
-    card.addEventListener('click', function() {
-        // Pop effect
-        this.style.transform = 'scale(1.1)';
+// Eiffel Tower dream lights
+eiffelTower.addEventListener('click', (e) => {
+    e.stopPropagation();
+    
+    // Cycle through dreams
+    const dreams = [
+        { element: dreamStudy, name: 'study' },
+        { element: dreamChef, name: 'chef' },
+        { element: dreamTravel, name: 'travel' }
+    ];
+    
+    // Find next dream to show
+    let nextIndex = 0;
+    
+    if (currentDream) {
+        currentDream.element.classList.remove('active');
+        
+        const currentIndex = dreams.findIndex(d => d.element === currentDream.element);
+        nextIndex = (currentIndex + 1) % dreams.length;
+    }
+    
+    // Show next dream
+    currentDream = dreams[nextIndex];
+    currentDream.element.classList.add('active');
+    
+    // After showing all dreams, show birthday message
+    if (nextIndex === 2) { // After showing travel dream
         setTimeout(() => {
-            this.style.transform = '';
-        }, 200);
-        
-        // Add sparkle effect
-        const emoji = this.querySelector('.dream-emoji');
-        emoji.style.animation = 'none';
-        emoji.offsetHeight; // Trigger reflow
-        emoji.style.animation = 'rotate 4s infinite linear';
-    });
-});
-
-// Add floating animation to sunflowers in birthday scene
-const celebratingSunflowers = document.querySelectorAll('.celebrating-sunflower');
-celebratingSunflowers.forEach((sunflower, index) => {
-    sunflower.style.animation = `bounce 1s infinite ${index * 0.2}s`;
-});
-
-// Typewriter effect for birthday message (optional)
-function typewriterEffect(element, text, speed = 50) {
-    let i = 0;
-    element.innerHTML = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
+            birthdayMessage.classList.add('show');
+        }, 500);
     }
     
-    type();
+    // Add tower animation
+    eiffelTower.style.transform = 'scale(0.98)';
+    setTimeout(() => {
+        eiffelTower.style.transform = '';
+    }, 200);
+});
+
+// Optional: Click anywhere on dreams scene to cycle
+const dreamsScene = document.getElementById('scene-dreams');
+dreamsScene.addEventListener('click', (e) => {
+    // Only trigger if clicking directly on the scene (not on messages)
+    if (e.target === dreamsScene || e.target.classList.contains('dreams-container')) {
+        // Simulate tower click
+        const clickEvent = new Event('click');
+        eiffelTower.dispatchEvent(clickEvent);
+    }
+});
+
+// Add floating animation to ambient sunflowers
+const ambientSunflowers = document.querySelectorAll('.ambient-sunflower');
+ambientSunflowers.forEach((flower, index) => {
+    setInterval(() => {
+        const yOffset = Math.sin(Date.now() * 0.001 + index) * 10;
+        flower.style.transform = `translateY(${yOffset}px)`;
+    }, 50);
+});
+
+// Initialize - ensure first scene is active
+showScene(scenes.gift);
+
+// Add subtle hover effect to sunflower in first scene
+const mainSunflower = document.querySelector('.sunflower.main');
+if (mainSunflower) {
+    mainSunflower.addEventListener('mouseenter', () => {
+        mainSunflower.style.transform = 'rotate(5deg)';
+    });
+    
+    mainSunflower.addEventListener('mouseleave', () => {
+        mainSunflower.style.transform = '';
+    });
 }
 
-// Initialize any special effects
-document.addEventListener('DOMContentLoaded', () => {
-    // Ensure first scene is active
-    scenes.sunflower.classList.add('active');
-    
-    // Add random movement to floating sunflowers
-    const floatingSunflowers = document.querySelectorAll('.floating-sunflower');
-    floatingSunflowers.forEach(sunflower => {
-        setInterval(() => {
-            const randomX = (Math.random() - 0.5) * 50;
-            const randomY = (Math.random() - 0.5) * 50;
-            sunflower.style.transform = `translate(${randomX}px, ${randomY}px) rotate(${Math.random() * 360}deg)`;
-        }, 3000);
-    });
-});
-
-// Add keyboard navigation for fun (optional)
+// Add keyboard navigation (optional)
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') {
-        if (scenes.sunflower.classList.contains('active')) {
-            switchScene(scenes.sunflower, scenes.dreams);
-        } else if (scenes.dreams.classList.contains('active')) {
-            switchScene(scenes.dreams, scenes.birthday);
+    if (e.key === 'Escape') {
+        // Reset to first scene
+        showScene(scenes.gift);
+        if (currentDream) {
+            currentDream.element.classList.remove('active');
+            currentDream = null;
         }
-    } else if (e.key === 'ArrowLeft') {
-        if (scenes.birthday.classList.contains('active')) {
-            switchScene(scenes.birthday, scenes.dreams);
-        } else if (scenes.dreams.classList.contains('active')) {
-            switchScene(scenes.dreams, scenes.sunflower);
-        }
+        birthdayMessage.classList.remove('show');
     }
 });
 
-// Add touch swipe support for mobile
+// Add touch support for mobile
 let touchStartX = 0;
 let touchEndX = 0;
 
@@ -214,36 +149,56 @@ document.addEventListener('touchend', (e) => {
 });
 
 function handleSwipe() {
-    const swipeThreshold = 50;
+    const threshold = 50;
     const diff = touchEndX - touchStartX;
     
-    if (Math.abs(diff) > swipeThreshold) {
-        if (diff > 0) {
-            // Swipe right - go to previous scene
-            if (scenes.dreams.classList.contains('active')) {
-                switchScene(scenes.dreams, scenes.sunflower);
-            } else if (scenes.birthday.classList.contains('active')) {
-                switchScene(scenes.birthday, scenes.dreams);
-            }
-        } else {
-            // Swipe left - go to next scene
-            if (scenes.sunflower.classList.contains('active')) {
-                switchScene(scenes.sunflower, scenes.dreams);
-            } else if (scenes.dreams.classList.contains('active')) {
-                switchScene(scenes.dreams, scenes.birthday);
-            }
+    if (Math.abs(diff) > threshold) {
+        // Find current scene index
+        const sceneArray = Object.values(scenes);
+        const currentIndex = sceneArray.findIndex(s => s.classList.contains('active'));
+        
+        if (diff > 0 && currentIndex > 0) {
+            // Swipe right - go back
+            showScene(sceneArray[currentIndex - 1]);
+        } else if (diff < 0 && currentIndex < sceneArray.length - 1) {
+            // Swipe left - go forward
+            showScene(sceneArray[currentIndex + 1]);
         }
     }
 }
 
-// Add background music (optional - uncomment if you want to add music)
-/*
-const audio = new Audio('happy-birthday.mp3');
-audio.loop = true;
-
-document.addEventListener('click', () => {
-    if (scenes.birthday.classList.contains('active') && audio.paused) {
-        audio.play().catch(e => console.log('Audio autoplay prevented'));
+// Add smooth transitions between scenes
+const style = document.createElement('style');
+style.textContent = `
+    .scene {
+        transition: opacity 0.5s ease;
     }
-}, { once: true });
-*/
+    
+    .gift-box {
+        transition: transform 0.3s ease;
+    }
+    
+    .gift-lid {
+        transition: transform 0.3s ease;
+    }
+    
+    .dream-light {
+        transition: opacity 0.5s ease, transform 0.3s ease;
+    }
+    
+    .dream-light.active {
+        animation: fadeInLight 0.5s ease;
+    }
+    
+    @keyframes fadeInLight {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+`;
+document.head.appendChild(style);
