@@ -1,204 +1,243 @@
-// Scene management
+// scene management
 const scenes = {
-    gift: document.getElementById('scene-gift'),
-    giftContent: document.getElementById('scene-gift-content'),
-    letter: document.getElementById('scene-letter'),
-    dreams: document.getElementById('scene-dreams')
+    scene1: document.getElementById('scene-1'),
+    scene2: document.getElementById('scene-2'),
+    scene3: document.getElementById('scene-3'),
+    scene4: document.getElementById('scene-4')
 };
 
-// Elements
+// elements
 const giftBox = document.getElementById('giftBox');
-const openLetter = document.getElementById('openLetter');
+const itemSunflower = document.getElementById('itemSunflower');
+const itemChocolate = document.getElementById('itemChocolate');
+const itemLetter = document.getElementById('itemLetter');
 const toDreams = document.getElementById('toDreams');
-const eiffelTower = document.getElementById('eiffelTower');
-const birthdayMessage = document.getElementById('birthdayMessage');
+const tower = document.getElementById('towerContainer');
+const finalMessage = document.getElementById('finalMessage');
+const towerHint = document.getElementById('towerHint');
 
-// Dream lights
-const dreamStudy = document.getElementById('dreamStudy');
-const dreamChef = document.getElementById('dreamChef');
-const dreamTravel = document.getElementById('dreamTravel');
+// dream cards
+const dream1 = document.getElementById('dream1');
+const dream2 = document.getElementById('dream2');
+const dream3 = document.getElementById('dream3');
+const dreams = [dream1, dream2, dream3];
 
-let currentDream = null;
+let currentDreamIndex = -1;
+let allDreamsSeen = false;
 
-// Switch scenes with fade
-function showScene(scene) {
-    Object.values(scenes).forEach(s => {
-        s.classList.remove('active');
+// switch scene with fade
+function showScene(sceneId) {
+    Object.values(scenes).forEach(scene => {
+        scene.classList.remove('active');
     });
-    scene.classList.add('active');
+    scenes[sceneId].classList.add('active');
 }
 
-// Gift box interaction
+// gift box interaction
 giftBox.addEventListener('click', () => {
     giftBox.classList.add('opened');
     
-    // Show gift contents after animation
+    // haptic feedback (visual)
+    giftBox.style.transform = 'scale(0.95)';
     setTimeout(() => {
-        showScene(scenes.giftContent);
+        giftBox.style.transform = '';
+    }, 200);
+    
+    // go to gift contents
+    setTimeout(() => {
+        showScene('scene2');
+    }, 400);
+});
+
+// item interactions
+itemSunflower.addEventListener('click', () => {
+    // visual feedback
+    itemSunflower.classList.add('clicked');
+    setTimeout(() => {
+        itemSunflower.classList.remove('clicked');
     }, 300);
+    
+    // go back to scene 1 to see sunflower
+    setTimeout(() => {
+        showScene('scene1');
+    }, 400);
 });
 
-// Open letter
-openLetter.addEventListener('click', () => {
-    showScene(scenes.letter);
+itemChocolate.addEventListener('click', () => {
+    itemChocolate.classList.add('clicked');
+    setTimeout(() => {
+        itemChocolate.classList.remove('clicked');
+    }, 300);
+    
+    // just a moment of joy
+    alert('🍫 for you!');
 });
 
-// Go to dreams
+itemLetter.addEventListener('click', () => {
+    itemLetter.classList.add('clicked');
+    setTimeout(() => {
+        itemLetter.classList.remove('clicked');
+    }, 300);
+    
+    // go to letter
+    setTimeout(() => {
+        showScene('scene3');
+    }, 400);
+});
+
+// go to dreams
 toDreams.addEventListener('click', () => {
-    showScene(scenes.dreams);
+    showScene('scene4');
 });
 
-// Eiffel Tower dream lights
-eiffelTower.addEventListener('click', (e) => {
+// tower interaction - show dreams one by one
+tower.addEventListener('click', (e) => {
     e.stopPropagation();
     
-    // Cycle through dreams
-    const dreams = [
-        { element: dreamStudy, name: 'study' },
-        { element: dreamChef, name: 'chef' },
-        { element: dreamTravel, name: 'travel' }
-    ];
-    
-    // Find next dream to show
-    let nextIndex = 0;
-    
-    if (currentDream) {
-        currentDream.element.classList.remove('active');
-        
-        const currentIndex = dreams.findIndex(d => d.element === currentDream.element);
-        nextIndex = (currentIndex + 1) % dreams.length;
-    }
-    
-    // Show next dream
-    currentDream = dreams[nextIndex];
-    currentDream.element.classList.add('active');
-    
-    // After showing all dreams, show birthday message
-    if (nextIndex === 2) { // After showing travel dream
-        setTimeout(() => {
-            birthdayMessage.classList.add('show');
-        }, 500);
-    }
-    
-    // Add tower animation
-    eiffelTower.style.transform = 'scale(0.98)';
+    // tower tap animation
+    tower.style.transform = 'scale(0.98)';
     setTimeout(() => {
-        eiffelTower.style.transform = '';
+        tower.style.transform = '';
     }, 200);
-});
-
-// Optional: Click anywhere on dreams scene to cycle
-const dreamsScene = document.getElementById('scene-dreams');
-dreamsScene.addEventListener('click', (e) => {
-    // Only trigger if clicking directly on the scene (not on messages)
-    if (e.target === dreamsScene || e.target.classList.contains('dreams-container')) {
-        // Simulate tower click
-        const clickEvent = new Event('click');
-        eiffelTower.dispatchEvent(clickEvent);
-    }
-});
-
-// Add floating animation to ambient sunflowers
-const ambientSunflowers = document.querySelectorAll('.ambient-sunflower');
-ambientSunflowers.forEach((flower, index) => {
-    setInterval(() => {
-        const yOffset = Math.sin(Date.now() * 0.001 + index) * 10;
-        flower.style.transform = `translateY(${yOffset}px)`;
-    }, 50);
-});
-
-// Initialize - ensure first scene is active
-showScene(scenes.gift);
-
-// Add subtle hover effect to sunflower in first scene
-const mainSunflower = document.querySelector('.sunflower.main');
-if (mainSunflower) {
-    mainSunflower.addEventListener('mouseenter', () => {
-        mainSunflower.style.transform = 'rotate(5deg)';
-    });
     
-    mainSunflower.addEventListener('mouseleave', () => {
-        mainSunflower.style.transform = '';
-    });
-}
-
-// Add keyboard navigation (optional)
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        // Reset to first scene
-        showScene(scenes.gift);
-        if (currentDream) {
-            currentDream.element.classList.remove('active');
-            currentDream = null;
-        }
-        birthdayMessage.classList.remove('show');
-    }
-});
-
-// Add touch support for mobile
-let touchStartX = 0;
-let touchEndX = 0;
-
-document.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-});
-
-document.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-});
-
-function handleSwipe() {
-    const threshold = 50;
-    const diff = touchEndX - touchStartX;
-    
-    if (Math.abs(diff) > threshold) {
-        // Find current scene index
-        const sceneArray = Object.values(scenes);
-        const currentIndex = sceneArray.findIndex(s => s.classList.contains('active'));
+    if (!allDreamsSeen) {
+        currentDreamIndex = (currentDreamIndex + 1) % 3;
         
-        if (diff > 0 && currentIndex > 0) {
-            // Swipe right - go back
-            showScene(sceneArray[currentIndex - 1]);
-        } else if (diff < 0 && currentIndex < sceneArray.length - 1) {
-            // Swipe left - go forward
-            showScene(sceneArray[currentIndex + 1]);
+        // hide all dreams
+        dreams.forEach(d => d.classList.remove('active'));
+        
+        // show current dream
+        dreams[currentDreamIndex].classList.add('active');
+        
+        // update hint
+        if (currentDreamIndex === 2) {
+            towerHint.textContent = 'one more time';
+        } else {
+            towerHint.textContent = 'keep going';
         }
+        
+        // if we've shown all dreams
+        if (currentDreamIndex === 2) {
+            allDreamsSeen = true;
+            
+            // show final message after a moment
+            setTimeout(() => {
+                finalMessage.classList.add('show');
+                towerHint.textContent = 'happy birthday fadwa ✦';
+            }, 800);
+        }
+    } else {
+        // after all dreams seen, clicking shows message again
+        finalMessage.classList.add('show');
+        towerHint.textContent = 'happy birthday fadwa ✦';
     }
+});
+
+// reset everything (optional, for replay)
+function resetExperience() {
+    currentDreamIndex = -1;
+    allDreamsSeen = false;
+    dreams.forEach(d => d.classList.remove('active'));
+    finalMessage.classList.remove('show');
+    giftBox.classList.remove('opened');
+    towerHint.textContent = 'click the tower';
+    showScene('scene1');
 }
 
-// Add smooth transitions between scenes
-const style = document.createElement('style');
-style.textContent = `
-    .scene {
-        transition: opacity 0.5s ease;
+// keyboard shortcut to reset (press 'r')
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'r' || e.key === 'R') {
+        resetExperience();
     }
-    
-    .gift-box {
-        transition: transform 0.3s ease;
+});
+
+// smooth entrance animations
+document.querySelectorAll('.scene').forEach(scene => {
+    scene.addEventListener('transitionend', () => {
+        // trigger any entrance animations
+        const items = scene.querySelectorAll('.item');
+        items.forEach((item, i) => {
+            item.style.animation = `fadeSlideUp 0.5s ${i * 0.1}s both`;
+        });
+    });
+});
+
+// add floating animation to gift box
+let floatAngle = 0;
+setInterval(() => {
+    if (scenes.scene1.classList.contains('active')) {
+        floatAngle += 0.02;
+        const yOffset = Math.sin(floatAngle) * 5;
+        giftBox.style.transform = `translateY(${yOffset}px)`;
     }
+}, 50);
+
+// add some gen z micro-interactions
+document.querySelectorAll('.item, .btn, .gift-box').forEach(el => {
+    el.addEventListener('mousedown', () => {
+        el.style.transform = 'scale(0.98)';
+    });
     
-    .gift-lid {
-        transition: transform 0.3s ease;
-    }
+    el.addEventListener('mouseup', () => {
+        el.style.transform = '';
+    });
     
-    .dream-light {
-        transition: opacity 0.5s ease, transform 0.3s ease;
-    }
-    
-    .dream-light.active {
-        animation: fadeInLight 0.5s ease;
-    }
-    
-    @keyframes fadeInLight {
-        from {
-            opacity: 0;
-            transform: translateY(10px);
+    el.addEventListener('mouseleave', () => {
+        el.style.transform = '';
+    });
+});
+
+// auto-hide hints after a while
+setTimeout(() => {
+    document.querySelectorAll('.hint').forEach(hint => {
+        hint.style.transition = 'opacity 0.5s';
+        hint.style.opacity = '0.5';
+    });
+}, 3000);
+
+// celebrate with confetti on final message
+const finalMessageObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        if (mutation.target.classList.contains('show')) {
+            // create minimal confetti effect
+            for (let i = 0; i < 10; i++) {
+                createConfetti();
+            }
         }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-`;
-document.head.appendChild(style);
+    });
+});
+
+finalMessageObserver.observe(finalMessage, {
+    attributes: true,
+    attributeFilter: ['class']
+});
+
+function createConfetti() {
+    const colors = ['#e6b450', '#8b5a2b', '#d4a5a5', '#f39c12'];
+    const confetti = document.createElement('div');
+    
+    confetti.style.position = 'fixed';
+    confetti.style.left = Math.random() * 100 + '%';
+    confetti.style.top = '-10px';
+    confetti.style.width = '4px';
+    confetti.style.height = '4px';
+    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.borderRadius = '50%';
+    confetti.style.pointerEvents = 'none';
+    confetti.style.zIndex = '1000';
+    confetti.style.transition = 'all 2s cubic-bezier(0.4, 0, 0.2, 1)';
+    
+    document.body.appendChild(confetti);
+    
+    setTimeout(() => {
+        confetti.style.transform = `translateY(${window.innerHeight + 10}px) translateX(${Math.random() * 100 - 50}px)`;
+        confetti.style.opacity = '0';
+    }, 10);
+    
+    setTimeout(() => {
+        confetti.remove();
+    }, 2000);
+}
+
+// start with scene 1
+showScene('scene1');
