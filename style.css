@@ -772,4 +772,333 @@ body {
     animation: buttonPulse 2s infinite;
 }
 
-@keyframes button
+@keyframes buttonPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(180, 125, 86, 0.3); }
+    50% { transform: scale(1.05); box-shadow: 0 0 40px rgba(180, 125, 86, 0.5); }
+}
+
+.pulse-button:hover {
+    background: #b47d56;
+    color: white;
+    transform: scale(1.1);
+}
+
+.button-sparkle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, white 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.pulse-button:hover .button-sparkle {
+    opacity: 0.3;
+    animation: sparkleMove 1s infinite;
+}
+
+@keyframes sparkleMove {
+    0% { transform: scale(1) translate(-100%, -100%); }
+    100% { transform: scale(2) translate(100%, 100%); }
+}
+
+/* ===== SCENE 4: CAKE ===== */
+.firework-title {
+    font-size: 2rem;
+    color: #b47d56;
+    margin-bottom: 30px;
+    animation: fireworkPulse 2s infinite;
+}
+
+@keyframes fireworkPulse {
+    0%, 100% { text-shadow: 0 0 20px #ffdb8e; }
+    50% { text-shadow: 0 0 40px #fbb53b, 0 0 60px #ff8a8a; }
+}
+
+.candle-garden {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.candle-item {
+    position: relative;
+    width: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.candle-item:hover {
+    transform: scale(1.2) translateY(-5px);
+}
+
+.flame-animated {
+    width: 14px;
+    height: 22px;
+    background: radial-gradient(circle at 30% 30%, #ffd700, #ff8c00);
+    border-radius: 50% 50% 20% 20%;
+    margin: 0 auto 3px;
+    animation: flicker 0.3s infinite;
+    transform-origin: bottom;
+}
+
+@keyframes flicker {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.1, 0.9); }
+    50% { transform: scale(0.9, 1.1); }
+    75% { transform: scale(1.1, 1); }
+}
+
+.candle-item.blown .flame-animated {
+    animation: blowOut 0.3s forwards;
+}
+
+@keyframes blowOut {
+    to {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.candle-body {
+    width: 100%;
+    height: 45px;
+    background: linear-gradient(135deg, #ffb6c1, #ff9eb5);
+    border-radius: 3px 3px 2px 2px;
+    box-shadow: 0 5px 10px rgba(255, 182, 193, 0.3);
+}
+
+.candle-glow {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.3), transparent);
+    top: -10px;
+    left: -5px;
+    border-radius: 50%;
+    animation: candleGlow 2s infinite;
+    pointer-events: none;
+}
+
+@keyframes candleGlow {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.3); }
+}
+
+/* celebration cake */
+.celebration-cake {
+    position: relative;
+    width: 250px;
+    height: 150px;
+    margin: 20px auto;
+    animation: cakeFloat 4s infinite;
+}
+
+@keyframes cakeFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.cake-layer {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #f9e0d6, #f5d0c0);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.cake-layer.bottom {
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+}
+
+.cake-layer.middle {
+    bottom: 50px;
+    width: 85%;
+    height: 45px;
+}
+
+.cake-layer.top {
+    bottom: 90px;
+    width: 70%;
+    height: 35px;
+}
+
+.cake-drips {
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: repeating-linear-gradient(
+        45deg,
+        #fff0db 0px,
+        #fff0db 10px,
+        transparent 10px,
+        transparent 20px
+    );
+    opacity: 0.5;
+}
+
+.cake-sprinkles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 30%, #ff69b4 2px, transparent 2px),
+                radial-gradient(circle at 80% 70%, #ffd700 2px, transparent 2px);
+    background-size: 30px 30px;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.cake-topper {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #ff69b4;
+    text-shadow: 0 0 20px #ff69b4;
+    animation: topperGlow 1.5s infinite;
+}
+
+@keyframes topperGlow {
+    0%, 100% { text-shadow: 0 0 20px #ff69b4; }
+    50% { text-shadow: 0 0 40px #ff69b4, 0 0 60px #ffb6c1; }
+}
+
+/* counter */
+.candle-counter {
+    margin: 30px 0;
+    width: 200px;
+}
+
+.counter-bg {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.counter-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ffdb8e, #fbb53b);
+    transition: width 0.3s ease;
+    border-radius: 4px;
+}
+
+.counter-text {
+    display: block;
+    text-align: center;
+    margin-top: 8px;
+    color: #b47d56;
+    font-size: 0.9rem;
+}
+
+/* birthday explosion */
+.birthday-explosion {
+    text-align: center;
+    margin-top: 40px;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.birthday-explosion.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.blast-happy {
+    font-size: 3rem;
+    color: #b47d56;
+    animation: blastGlow 2s infinite;
+}
+
+@keyframes blastGlow {
+    0%, 100% { text-shadow: 0 0 30px #ffdb8e; }
+    50% { text-shadow: 0 0 60px #fbb53b, 0 0 90px #ff8a8a; }
+}
+
+.blast-name {
+    font-size: 4rem;
+    color: #ff8a8a;
+    margin: 10px 0;
+    animation: nameExplode 1s infinite;
+}
+
+@keyframes nameExplode {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.blast-sunflowers {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.blast-sunflowers span {
+    font-size: 2.5rem;
+    animation: sunflowerSpin 3s infinite;
+}
+
+.blast-sunflowers span:nth-child(1) { animation-delay: 0s; }
+.blast-sunflowers span:nth-child(2) { animation-delay: 0.2s; }
+.blast-sunflowers span:nth-child(3) { animation-delay: 0.4s; }
+.blast-sunflowers span:nth-child(4) { animation-delay: 0.6s; }
+.blast-sunflowers span:nth-child(5) { animation-delay: 0.8s; }
+
+@keyframes sunflowerSpin {
+    from { transform: rotate(0deg) scale(1); }
+    to { transform: rotate(360deg) scale(1.2); }
+}
+
+.blast-wish {
+    color: #a28b76;
+    font-size: 1.2rem;
+    margin-top: 20px;
+}
+
+/* confetti canvas */
+#confettiCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* responsive */
+@media (max-width: 500px) {
+    .giant-sunflower {
+        transform: scale(0.8) translateX(-60%);
+    }
+    
+    .surprise-card {
+        width: 140px;
+    }
+    
+    .blast-happy {
+        font-size: 2rem;
+    }
+    
+    .blast-name {
+        font-size: 3rem;
+    }
+}
