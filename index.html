@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Happy Birthday Fadwa! ✨</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Floating elements background -->
+    <div class="floating-elements">
+        <div class="floating-sunflower">🌻</div>
+        <div class="floating-sunflower">🌻</div>
+        <div class="floating-sunflower">🌻</div>
+        <div class="floating-sunflower">🌻</div>
+        <div class="floating-sunflower">🌻</div>
+        <div class="floating-sunflower">🌻</div>
+    </div>
+
+    <!-- Main container -->
+    <div class="container">
+        <!-- Initial Sunflower Field -->
+        <div id="sunflower-field" class="scene active">
+            <h1 class="glitch-text" data-text="🌻 For Fadwa 🌻">🌻 For Fadwa 🌻</h1>
+            <div class="sunflower-field">
+                <div class="sunflower large" id="main-sunflower">
+                    <div class="flower">
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                        <div class="petal"></div>
+                        <div class="center">✨</div>
+                    </div>
+                    <div class="stem"></div>
+                    <div class="leaf left"></div>
+                    <div class="leaf right"></div>
+                </div>
+                <div class="message-overlay">
+                    <p class="click-prompt">Click on the special sunflower to begin! 🌻</p>
+                    <div class="floating-name">Fadwa</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dreams & Wishes Scene -->
+        <div id="dreams-scene" class="scene">
+            <h2 class="section-title">✨ Your Beautiful Dreams ✨</h2>
+            <div class="dreams-container">
+                <div class="dream-card" id="dream-study">
+                    <div class="dream-emoji">📚</div>
+                    <h3>Study Abroad</h3>
+                    <p>Exploring the world, learning new things, and growing every day</p>
+                    <div class="dream-progress">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+                <div class="dream-card" id="dream-chef">
+                    <div class="dream-emoji">👩‍🍳</div>
+                    <h3>Become a Chef</h3>
+                    <p>Creating delicious meals and spreading joy through food</p>
+                    <div class="dream-progress">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+                <div class="dream-card" id="dream-travel">
+                    <div class="dream-emoji">✈️</div>
+                    <h3>Travel the World</h3>
+                    <p>Tasting new flavors and experiencing different cultures</p>
+                    <div class="dream-progress">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+            <button class="continue-btn" id="continue-to-birthday">Click here for your surprise 💫</button>
+        </div>
+
+        <!-- Birthday Message Scene -->
+        <div id="birthday-scene" class="scene">
+            <div class="birthday-content">
+                <div class="sunflower-celebration">
+                    <div class="celebrating-sunflower">🌻</div>
+                    <div class="celebrating-sunflower">🌻</div>
+                    <div class="celebrating-sunflower">🌻</div>
+                </div>
+                <h1 class="birthday-title">🎉 HAPPY BIRTHDAY FADWA! 🎉</h1>
+                <div class="message-card">
+                    <p class="birthday-message">
+                        My dearest sister,<br><br>
+                        On your special day, I wanted to remind you that just like these sunflowers 
+                        that always face the sun, you bring so much light and warmth to everyone around you.<br><br>
+                        I believe in your dreams of studying abroad, becoming an amazing chef, 
+                        and traveling the world. You have the talent, the passion, and the strength 
+                        to achieve absolutely everything you set your heart on.<br><br>
+                        Keep shining, keep dreaming, and never stop being the incredible person you are.<br><br>
+                        With all my love,<br>
+                        Your sister 💛
+                    </p>
+                </div>
+                <div class="sunflower-wishes">
+                    <span class="wish-emoji">🌻</span>
+                    <span class="wish-emoji">💛</span>
+                    <span class="wish-emoji">🌻</span>
+                    <span class="wish-emoji">✨</span>
+                    <span class="wish-emoji">🌻</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
